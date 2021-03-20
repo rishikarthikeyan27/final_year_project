@@ -207,6 +207,7 @@ class Window:
         self.fixed_support_lab.place(height = 100, width = 30, x=120, y = 180)
         return
     
+        
     # Print arrow_list
     def print_arrow_list(self):
         print(self.arrow_list)
