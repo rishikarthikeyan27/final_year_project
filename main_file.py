@@ -73,13 +73,13 @@ class Window:
         self.simple_support_pic = Image.open('images/simple_support.png').resize((60,50), Image.ANTIALIAS)
         self.resized_simple_support_pic = ImageTk.PhotoImage(self.simple_support_pic)
         self.simple_support_button = tk.Button(self.frame1, image = self.resized_simple_support_pic, bg = 'black', command = self.create_simple_support)
-        self.simple_support_button.place(height = 40, width = 80, x=70, y=250)
+        self.simple_support_button.place(height = 40, width = 80, x=61, y=250)
 
         #Fixed Support
         self.fixed_support_pic = Image.open('images/fixed_support.png').resize((60,50), Image.ANTIALIAS)
         self.resized_fixed_support_pic = ImageTk.PhotoImage(self.fixed_support_pic)
         self.fixed_support_button = tk.Button(self.frame1, image = self.resized_fixed_support_pic, bg = 'black', command = self.create_fixed_support)
-        self.fixed_support_button.place(height = 40, width = 80, x=150, y=250)
+        self.fixed_support_button.place(height = 40, width = 80, x=141, y=250)
 
         #Crossection Drop Down
         self.varList = tk.StringVar(self.win)
@@ -99,6 +99,11 @@ class Window:
         self.bin_label= tk.Label(self.frame2, image = self.resized_bin_pic, bg = '#006665', borderwidth = 0)
         self.bin_label.place( width = 50, height = 50, x=600, y = 15)
 
+        #Delete all loads
+        self.delete_all_loads = ImageTk.PhotoImage(Image.open('images/delete_all_loads.png').resize((60, 60), Image.ANTIALIAS))
+        self.dal_button = tk.Button(self.frame2, image = self.delete_all_loads, bg = '#006665')
+        self.dal_button.place(width = 60, height = 60, x = 5, y=15)
+        
         #List of all the arrows that have been added
         self.arrow_list = []
 
