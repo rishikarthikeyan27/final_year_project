@@ -101,11 +101,19 @@ class Window:
 
         #Delete all loads
         self.delete_all_loads = ImageTk.PhotoImage(Image.open('images/delete_all_loads.png').resize((60, 60), Image.ANTIALIAS))
-        self.dal_button = tk.Button(self.frame2, image = self.delete_all_loads, bg = '#006665',command = self.del_all_loads) #command = self.del_all_loads
+        self.dal_button = tk.Button(self.frame2, image = self.delete_all_loads, bg = '#006665',command = self.del_all_loads)
         self.dal_button.place(width = 60, height = 60, x = 5, y=15)
+
+        #Delete all supports
+        self.delete_all_supports = ImageTk.PhotoImage(Image.open('images/delete_all_supports.png').resize((60, 60), Image.ANTIALIAS))
+        self.das_button = tk.Button(self.frame2, image = self.delete_all_supports, bg = '#006665',command = self.del_all_supports)
+        self.das_button.place(width = 60, height = 60, x = 70, y=15)
 
         #List of all the arrows that have been added
         self.arrow_list = []
+
+        #List of all the supports that have been added
+        self.support_list = []
 
         #mainloop
         self.win.mainloop()
@@ -127,6 +135,13 @@ class Window:
             i.destroy()
         self.arrow_list.clear()
         print(self.arrow_list)
+    
+    def del_all_supports(self):
+        for i in self.support_list:
+            i.destroy()
+        self.support_list.clear()
+        print(self.arrow_list)
+
     
     #widget master
     def widget_master(self, e):
@@ -235,16 +250,16 @@ class Window:
     def create_simple_support(self):
         self.simple_support_lab = tk.Label(self.frame2, image = self.resized_beam_simple_support)
         self.simple_support_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.support_list.append(self.simple_support_lab)
         self.simple_support_lab.bind('<B1-Motion>', self.widget_master)
         return
     def create_fixed_support(self):
         self.fixed_support_lab = tk.Label(self.frame2, image = self.resized_beam_fixed_support)
         self.fixed_support_lab.place(height = 100, width = 30, x=120, y = 180)
+        self.support_list.append(self.fixed_support_lab)
         self.fixed_support_lab.bind('<B1-Motion>', self.widget_master)
-        
         return
     
-        
     # Print arrow_list
     def print_arrow_list(self):
         print(self.arrow_list)
