@@ -96,7 +96,7 @@ class Window:
         #Bin
         self.bin_pic = Image.open('images/bin.png').resize((50, 50), Image.ANTIALIAS)
         self.resized_bin_pic = ImageTk.PhotoImage(self.bin_pic)
-        self.bin_label= tk.Label(self.frame2, image = self.resized_bin_pic, bg = '#006665')
+        self.bin_label= tk.Label(self.frame2, image = self.resized_bin_pic, bg = '#006665', borderwidth = 0)
         self.bin_label.place( width = 50, height = 50, x=600, y = 15)
 
         #List of all the arrows that have been added
