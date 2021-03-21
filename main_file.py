@@ -105,6 +105,13 @@ class Window:
         #mainloop
         self.win.mainloop()
 
+    #Widget move
+    def move(self, e):
+        print (e.x , e.y)
+        x = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
+        y = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
+        e.widget.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=x,y=y,anchor='center')
+    
     # Displays crossection picture  
     def display_crossection_picture(self, c):
         if(c == "Rectangular"):
@@ -170,11 +177,13 @@ class Window:
         self.arrow_up_lab = tk.Label(self.frame2,image = self.resized_arrow_up_pic, bg = '#006665')
         self.arrow_up_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.arrow_up_lab)
+        self.arrow_up_lab.bind('<B1-Motion>', self.move)
         return
     def create_down_arrow(self):
         self.arrow_down_lab = tk.Label(self.frame2,image = self.resized_arrow_down_pic, bg = '#006665')
         self.arrow_down_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.arrow_down_lab)
+        self.arrow_down_lab.bind('<B1-Motion>', self.move)
         return
     def create_moment_ac(self):
         self.moment_ac_lab = tk.Label(self.frame2,image = self.resized_moment_ac_pic, bg = '#006665')

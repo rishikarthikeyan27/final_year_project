@@ -9,7 +9,6 @@ class Dog:
         self.puppy = ImageTk.PhotoImage(Image.open('images/puppy.png').resize((80, 50), Image.ANTIALIAS))
         self.puppy_button = tk.Button(self.win, text = "Create Puppies", command = self.create_label)
         self.puppy_button.pack()
-        self.label_list = []
 
     def move(self, e):
         print (e.x , e.y)
