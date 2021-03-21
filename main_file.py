@@ -101,9 +101,9 @@ class Window:
 
         #Delete all loads
         self.delete_all_loads = ImageTk.PhotoImage(Image.open('images/delete_all_loads.png').resize((60, 60), Image.ANTIALIAS))
-        self.dal_button = tk.Button(self.frame2, image = self.delete_all_loads, bg = '#006665')
+        self.dal_button = tk.Button(self.frame2, image = self.delete_all_loads, bg = '#006665') #command = self.del_all_loads
         self.dal_button.place(width = 60, height = 60, x = 5, y=15)
-        
+
         #List of all the arrows that have been added
         self.arrow_list = []
 
@@ -229,10 +229,13 @@ class Window:
     def create_simple_support(self):
         self.simple_support_lab = tk.Label(self.frame2, image = self.resized_beam_simple_support)
         self.simple_support_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.simple_support_lab.bind('<B1-Motion>', self.widget_master)
         return
     def create_fixed_support(self):
         self.fixed_support_lab = tk.Label(self.frame2, image = self.resized_beam_fixed_support)
         self.fixed_support_lab.place(height = 100, width = 30, x=120, y = 180)
+        self.fixed_support_lab.bind('<B1-Motion>', self.widget_master)
+        
         return
     
         
