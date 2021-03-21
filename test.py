@@ -10,25 +10,33 @@ class Dog:
         self.puppy_button = tk.Button(self.win, text = "Create Puppies", command = self.create_label)
         self.bin = ImageTk.PhotoImage(Image.open('images/bin.png').resize((80, 50), Image.ANTIALIAS))
         self.bin_label = tk.Label(self.win, text = "bin", image = self.bin)
-        self.bin_label.place(height = 50, width = 80, x= 0, y=0)
+        self.bin_label.place(height = 56, width = 50, x= 50, y=50)
+        # print("Bin x : "+ str(self.bin_label.coords(x)), "Bin y : "+ str(self.bin_label.coords(y)))
         self.puppy_button.pack()
 
     def move(self, e):
-        print (e.x , e.y)
+        # print (e.x , e.y)
         x = self.win.winfo_pointerx() - self.win.winfo_rootx()
         y = self.win.winfo_pointery() - self.win.winfo_rooty()
-        e.widget.place(height = 80, width = 50, x=x,y=y,anchor='center')
-        print(' X : '+ str(e.x) +' and '+ 'Y : ' + str(e.y))
+        e.widget.place(height = 60, width = 50, x=x,y=y,anchor='center')
+    def delete(self, e):
+        if((str(self.bin_label.winfo_rootx())[0] + str(self.bin_label.winfo_rootx())[1]) == (str(e.widget.winfo_rootx())[0] + str(e.widget.winfo_rootx())[1])) and ((str(self.bin_label.winfo_rooty())[0] + str(self.bin_label.winfo_rooty())[1]) == (str(e.widget.winfo_rooty())[0] + str(e.widget.winfo_rooty())[1])):
+            e.widget.destroy()
+
+    def master_move(self, e):
+        self.move(e)
+        self.delete(e)
 
     def create_label(self):
         self.puppy_label = tk.Label(self.win, image = self.puppy, text = str(random.randint(1,3)))
-        self.puppy_label.place(height = 80, width = 50, x= random.randint(300,400), y = random.randint(300, 400))
-        self.puppy_label.bind('<B1-Motion>', self.move)
+        self.puppy_label.place(height = 60, width = 50, x= random.randint(300,400), y = random.randint(300, 400))
+        self.puppy_label.bind('<B1-Motion>', self.master_move)
         return
     
-    def delete(self, e):
-        e.widget.destroy()
+    
+        
         
     
 lab = Dog()
 lab.win.mainloop()
+
