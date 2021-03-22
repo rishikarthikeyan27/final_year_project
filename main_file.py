@@ -21,6 +21,10 @@ class Window:
         self.frame3 = tk.Frame(master=self.win, width=680, height=315, bg="#006665")
         self.frame3.pack(fill=tk.Y, padx=5, pady=15,side=tk.BOTTOM, expand=False)
 
+        #Load label
+        self.load_selection_lab = ttk.Label(self.frame1, text = "Please Select Loads", background = '#006665', font=("Helvetica",9, 'bold'))
+        self.load_selection_lab.place(height = 30, width = 140, x=80, y=5)
+
         #Arrow down button
         self.arrow_down_pic = Image.open('images/arrow.png').resize((30, 30), Image.ANTIALIAS)
         self.resized_arrow_down_pic = ImageTk.PhotoImage(self.arrow_down_pic)
@@ -69,23 +73,27 @@ class Window:
         self.beam_fixed_support = Image.open('images/beamfixedsupport.png').resize((30, 100), Image.ANTIALIAS)
         self.resized_beam_fixed_support = ImageTk.PhotoImage(self.beam_fixed_support)
 
+        #Support label
+        self.support_selection_lab = ttk.Label(self.frame1, text = "Please Select Supports", background = '#006665', font=("Helvetica",9, 'bold'))
+        self.support_selection_lab.place(height = 30, width = 140, x=75, y=180)
+
         #Simple Support
         self.simple_support_pic = Image.open('images/simple_support.png').resize((60,50), Image.ANTIALIAS)
         self.resized_simple_support_pic = ImageTk.PhotoImage(self.simple_support_pic)
         self.simple_support_button = tk.Button(self.frame1, image = self.resized_simple_support_pic, bg = 'black', command = self.create_simple_support)
-        self.simple_support_button.place(height = 40, width = 80, x=61, y=250)
+        self.simple_support_button.place(height = 40, width = 80, x=61, y=210)
 
         #Fixed Support
         self.fixed_support_pic = Image.open('images/fixed_support.png').resize((60,50), Image.ANTIALIAS)
         self.resized_fixed_support_pic = ImageTk.PhotoImage(self.fixed_support_pic)
         self.fixed_support_button = tk.Button(self.frame1, image = self.resized_fixed_support_pic, bg = 'black', command = self.create_fixed_support)
-        self.fixed_support_button.place(height = 40, width = 80, x=141, y=250)
+        self.fixed_support_button.place(height = 40, width = 80, x=141, y=210)
 
         #Crossection Drop Down
         self.varList = tk.StringVar(self.win)
         self.varList.set("Force Type")
         self.force_type = ttk.OptionMenu(self.win, self.varList, "Cross section",'Rectangular', 'I', 'T', 'C', 'O', command = self.master_crossection_function)
-        self.force_type.place(height=40, width=120, x= 80, y=340)
+        self.force_type.place(height=40, width=120, x = 90, y=300)
 
         #Create the beam picture
         self.beam_pic = Image.open('images/beam.png').resize((400, 50), Image.ANTIALIAS)
