@@ -67,6 +67,25 @@ class Window:
         self.g_nonuniform_pic = Image.open('images/green_nonuniform_distributed_load.png').resize((80,50), Image.ANTIALIAS)
         self.resized_g_nonuniform_pic = ImageTk.PhotoImage(self.g_nonuniform_pic)
 
+        #Creating upside down uniform and upside down nonuniformly distributed load
+        self.g_usd_uniform_pic = Image.open('images/green_usd_uniform_distributed_load.png').resize((80,50), Image.ANTIALIAS)
+        self.resized_g_usd_uniform_pic = ImageTk.PhotoImage(self.g_usd_uniform_pic)
+        self.g_usd_nonuniform_pic = Image.open('images/green_usd_nonuniform_distributed_load.png').resize((80,50), Image.ANTIALIAS)
+        self.resized_g_usd_nonuniform_pic = ImageTk.PhotoImage(self.g_usd_nonuniform_pic)
+
+        # Upside Down Uniform Distributed Load button
+        self.usd_uniform_pic = Image.open('images/usd_uniform.png').resize((70,50), Image.ANTIALIAS)
+        self.resized_usd_uniform_pic = ImageTk.PhotoImage(self.usd_uniform_pic)
+        self.usd_uniform_button = tk.Button(self.win, image = self.resized_usd_uniform_pic, bg = 'black',command = self.create_usd_uniform_load)
+        self.usd_uniform_button.place(height = 50, width = 80, x=70, y=170)
+
+        # Upside Down Nonuniformly Distributed Load button
+        self.usd_nonuniform_pic = Image.open('images/usd_nonuniform.png').resize((70,50), Image.ANTIALIAS)
+        self.resized_usd_nonuniform_pic = ImageTk.PhotoImage(self.usd_nonuniform_pic)
+        self.usd_non_uniform_button = tk.Button(self.win, image = self.resized_usd_nonuniform_pic, bg = 'black',command = self.create_usd_nonuniform_load)
+        self.usd_non_uniform_button.place(height = 50, width = 80, x=150, y=170)
+
+       
         #Creating beam support pictures
         self.beam_simple_support = Image.open('images/beamsimplesupport.png').resize((40, 30), Image.ANTIALIAS)
         self.resized_beam_simple_support = ImageTk.PhotoImage(self.beam_simple_support)
@@ -75,25 +94,25 @@ class Window:
 
         #Support label
         self.support_selection_lab = ttk.Label(self.frame1, text = "Please Select Supports", background = '#006665', font=("Helvetica",9, 'bold'))
-        self.support_selection_lab.place(height = 30, width = 140, x=75, y=180)
+        self.support_selection_lab.place(height = 30, width = 140, x=75, y=230)
 
         #Simple Support
         self.simple_support_pic = Image.open('images/simple_support.png').resize((60,50), Image.ANTIALIAS)
         self.resized_simple_support_pic = ImageTk.PhotoImage(self.simple_support_pic)
         self.simple_support_button = tk.Button(self.frame1, image = self.resized_simple_support_pic, bg = 'black', command = self.create_simple_support)
-        self.simple_support_button.place(height = 40, width = 80, x=61, y=210)
+        self.simple_support_button.place(height = 40, width = 80, x=61, y=260)
 
         #Fixed Support
         self.fixed_support_pic = Image.open('images/fixed_support.png').resize((60,50), Image.ANTIALIAS)
         self.resized_fixed_support_pic = ImageTk.PhotoImage(self.fixed_support_pic)
         self.fixed_support_button = tk.Button(self.frame1, image = self.resized_fixed_support_pic, bg = 'black', command = self.create_fixed_support)
-        self.fixed_support_button.place(height = 40, width = 80, x=141, y=210)
+        self.fixed_support_button.place(height = 40, width = 80, x=141, y=260)
 
         #Crossection Drop Down
         self.varList = tk.StringVar(self.win)
         self.varList.set("Force Type")
         self.force_type = ttk.OptionMenu(self.win, self.varList, "Cross section",'Rectangular', 'I', 'T', 'C', 'O', command = self.master_crossection_function)
-        self.force_type.place(height=40, width=120, x = 90, y=300)
+        self.force_type.place(height=40, width=120, x = 90, y=350)
 
         #Create the beam picture
         self.beam_pic = Image.open('images/beam.png').resize((400, 50), Image.ANTIALIAS)
@@ -123,6 +142,7 @@ class Window:
         #List of all the supports that have been added
         self.support_list = []
 
+
         #mainloop
         self.win.mainloop()
 
@@ -133,9 +153,10 @@ class Window:
         e.widget.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=x,y=y,anchor='center')
 
     #Widget delete
-    def delete(self, e):        
+    def delete(self, e, inp):        
         if((str(self.bin_label.winfo_rootx())[0] + str(self.bin_label.winfo_rootx())[1]) == (str(e.widget.winfo_rootx())[0] + str(e.widget.winfo_rootx())[1])) and ((str(self.bin_label.winfo_rooty())[0] + str(self.bin_label.winfo_rooty())[1]) == (str(e.widget.winfo_rooty())[0] + str(e.widget.winfo_rooty())[1])):
             e.widget.destroy()
+            inp.destroy()
             print("Done destroying")
 
     def del_all_loads(self):
@@ -150,21 +171,29 @@ class Window:
         self.support_list.clear()
         print(self.arrow_list)
 
-    #Add input field on click
-    def add_input_field(self, e):
-        self.entry = self.Entry(self.win)
-    
-    #Move input along with arrows
-    def move_input(self, txt):
+    #Move input along with arrows (up)
+    def move_input_up(self, txt):
         x = self.win.winfo_pointerx() - self.win.winfo_rootx()
         y = self.win.winfo_pointery() - self.win.winfo_rooty()
-        txt.place(x=x-8 , y = y-50)
+        txt.place(x=x-10 , y = y-40)
     
-    #widget master
-    def widget_master(self, e):
+    #Move input along with arrows (down)
+    def move_input_down(self, txt):
+        x = self.win.winfo_pointerx() - self.win.winfo_rootx()
+        y = self.win.winfo_pointery() - self.win.winfo_rooty()
+        txt.place(x=x-10 , y = y+20)
+    
+    #widget master up
+    def widget_master_up(self, e, inp):
         self.move(e)
-        self.delete(e)
-        self.move_input(self.entry.text)
+        self.delete(e, inp)
+        self.move_input_up(inp)
+
+    #widget master down
+    def widget_master_down(self, e, inp):
+        self.move(e)
+        self.delete(e, inp)
+        self.move_input_down(inp)
     
     # Displays crossection picture  
     def display_crossection_picture(self, c):
@@ -231,43 +260,57 @@ class Window:
         self.arrow_up_lab = tk.Label(self.frame2,image = self.resized_arrow_up_pic, bg = '#006665')
         self.arrow_up_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.arrow_up_lab)
-        self.arrow_up_lab.bind('<Button-1>', self.add_input_field)
-        self.arrow_up_lab.bind('<B1-Motion>', self.widget_master)
+        self.entry = self.Entry(self.win)
+        self.arrow_up_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
         return
     def create_down_arrow(self):
         self.arrow_down_lab = tk.Label(self.frame2,image = self.resized_arrow_down_pic, bg = '#006665')
         self.arrow_down_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.arrow_down_lab)
-        self.arrow_down_lab.bind('<Button-1>', self.add_input_field)
-        self.arrow_down_lab.bind('<B1-Motion>', self.widget_master)
+        self.entry = self.Entry(self.win)
+        self.arrow_down_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
         return
     def create_moment_ac(self):
         self.moment_ac_lab = tk.Label(self.frame2,image = self.resized_moment_ac_pic, bg = '#006665')
         self.moment_ac_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.moment_ac_lab)
-        self.moment_ac_lab.bind('<Button-1>', self.add_input_field)
-        self.moment_ac_lab.bind('<B1-Motion>', self.widget_master)
+        self.entry = self.Entry(self.win)
+        self.moment_ac_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
         return
     def create_moment_c(self):
         self.moment_c_lab = tk.Label(self.frame2,image = self.resized_moment_c_pic, bg = '#006665')
         self.moment_c_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.moment_c_lab)
-        self.moment_c_lab.bind('<Button-1>', self.add_input_field)
-        self.moment_c_lab.bind('<B1-Motion>', self.widget_master)
+        self.entry = self.Entry(self.win)
+        self.moment_c_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
         return
     def create_uniform_load(self):
         self.uniform_load_lab = tk.Label(self.frame2,image = self.resized_g_uniform_pic, bg = '#006665')
         self.uniform_load_lab.place(height = 40, width = 80, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.uniform_load_lab)
-        self.uniform_load_lab.bind('<Button-1>', self.add_input_field)
-        self.uniform_load_lab.bind('<B1-Motion>', self.widget_master)
+        self.entry = self.Entry(self.win)
+        self.uniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
         return
     def create_nonuniform_load(self):
         self.nonuniform_load_lab = tk.Label(self.frame2,image = self.resized_g_nonuniform_pic, bg = '#006665')
         self.nonuniform_load_lab.place(height = 40, width = 80, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.nonuniform_load_lab)
-        self.nonuniform_load_lab.bind('<Button-1>', self.add_input_field)
-        self.nonuniform_load_lab.bind('<B1-Motion>', self.widget_master)
+        self.entry = self.Entry(self.win)
+        self.nonuniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
+        return
+    def create_usd_uniform_load(self):
+        self.usd_uniform_load_lab = tk.Label(self.frame2,image = self.resized_g_usd_uniform_pic, bg = '#006665')
+        self.usd_uniform_load_lab.place(height = 40, width = 80, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.arrow_list.append(self.usd_uniform_load_lab)
+        self.entry = self.Entry(self.win)
+        self.usd_uniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
+        return
+    def create_usd_nonuniform_load(self):
+        self.usd_nonuniform_load_lab = tk.Label(self.frame2,image = self.resized_g_usd_nonuniform_pic, bg = '#006665')
+        self.usd_nonuniform_load_lab.place(height = 40, width = 80, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.arrow_list.append(self.usd_nonuniform_load_lab)
+        self.entry = self.Entry(self.win)
+        self.usd_nonuniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
         return
     
     # Creating supports
