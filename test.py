@@ -40,7 +40,6 @@ class Dog:
     def delete_all(self):
         for i in self.puppy_list:
             i.destroy()
-        
 
     def master_move(self, e):
         self.move(e)
