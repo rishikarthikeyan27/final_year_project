@@ -150,11 +150,21 @@ class Window:
         self.support_list.clear()
         print(self.arrow_list)
 
+    #Add input field on click
+    def add_input_field(self, e):
+        self.entry = self.Entry(self.win)
+    
+    #Move input along with arrows
+    def move_input(self, txt):
+        x = self.win.winfo_pointerx() - self.win.winfo_rootx()
+        y = self.win.winfo_pointery() - self.win.winfo_rooty()
+        txt.place(x=x-8 , y = y-50)
     
     #widget master
     def widget_master(self, e):
         self.move(e)
         self.delete(e)
+        self.move_input(self.entry.text)
     
     # Displays crossection picture  
     def display_crossection_picture(self, c):
@@ -221,36 +231,42 @@ class Window:
         self.arrow_up_lab = tk.Label(self.frame2,image = self.resized_arrow_up_pic, bg = '#006665')
         self.arrow_up_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.arrow_up_lab)
+        self.arrow_up_lab.bind('<Button-1>', self.add_input_field)
         self.arrow_up_lab.bind('<B1-Motion>', self.widget_master)
         return
     def create_down_arrow(self):
         self.arrow_down_lab = tk.Label(self.frame2,image = self.resized_arrow_down_pic, bg = '#006665')
         self.arrow_down_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.arrow_down_lab)
+        self.arrow_down_lab.bind('<Button-1>', self.add_input_field)
         self.arrow_down_lab.bind('<B1-Motion>', self.widget_master)
         return
     def create_moment_ac(self):
         self.moment_ac_lab = tk.Label(self.frame2,image = self.resized_moment_ac_pic, bg = '#006665')
         self.moment_ac_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.moment_ac_lab)
+        self.moment_ac_lab.bind('<Button-1>', self.add_input_field)
         self.moment_ac_lab.bind('<B1-Motion>', self.widget_master)
         return
     def create_moment_c(self):
         self.moment_c_lab = tk.Label(self.frame2,image = self.resized_moment_c_pic, bg = '#006665')
         self.moment_c_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.moment_c_lab)
+        self.moment_c_lab.bind('<Button-1>', self.add_input_field)
         self.moment_c_lab.bind('<B1-Motion>', self.widget_master)
         return
     def create_uniform_load(self):
         self.uniform_load_lab = tk.Label(self.frame2,image = self.resized_g_uniform_pic, bg = '#006665')
         self.uniform_load_lab.place(height = 40, width = 80, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.uniform_load_lab)
+        self.uniform_load_lab.bind('<Button-1>', self.add_input_field)
         self.uniform_load_lab.bind('<B1-Motion>', self.widget_master)
         return
     def create_nonuniform_load(self):
         self.nonuniform_load_lab = tk.Label(self.frame2,image = self.resized_g_nonuniform_pic, bg = '#006665')
         self.nonuniform_load_lab.place(height = 40, width = 80, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_list.append(self.nonuniform_load_lab)
+        self.nonuniform_load_lab.bind('<Button-1>', self.add_input_field)
         self.nonuniform_load_lab.bind('<B1-Motion>', self.widget_master)
         return
     
@@ -271,5 +287,10 @@ class Window:
     # Print arrow_list
     def print_arrow_list(self):
         print(self.arrow_list)
+
+    #Entry class
+    class Entry:
+        def __init__(self, win):
+            self.text = tk.Text(win, height =1, width = 2)
     
 root = Window()
