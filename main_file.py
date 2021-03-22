@@ -12,7 +12,6 @@ class Window:
         self.win = tk.Tk()
         self.win.geometry('1000x650')
         self.win.configure(bg = 'black')
-
         #Create Frames
         self.frame1 = tk.Frame(master=self.win, width=280, height=630, bg='#006665')
         self.frame1.pack(fill=tk.BOTH, padx=10, pady=15,side=tk.LEFT, expand=False)
@@ -158,11 +157,11 @@ class Window:
         #mainloop
         self.win.mainloop()
 
-    #Widget move
-    def move(self, e):
-        x = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
-        y = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
-        e.widget.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=x,y=y,anchor='center')
+    # #Widget move
+    # def move(self, e):
+    #     x = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
+    #     y = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
+    #     e.widget.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=x,y=y,anchor='center')
 
     #Widget delete
     def delete(self, e, inp):        
@@ -187,28 +186,36 @@ class Window:
         print(self.arrow_list)
 
     #Move input along with arrows (up)
-    def move_input_up(self, txt):
+    def move_input_up(self, e,txt):
+        ex = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
+        ey = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
+        e.widget.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=ex,y=ey,anchor='center')
+        print('X : ' + str(ex) + " Y : " + str(ey))
         x = self.win.winfo_pointerx() - self.win.winfo_rootx()
         y = self.win.winfo_pointery() - self.win.winfo_rooty()
         txt.place(x=x-10 , y = y-40)
     
     #Move input along with arrows (down)
-    def move_input_down(self, txt):
+    def move_input_down(self, e, txt):
+        ex = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
+        ey = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
+        e.widget.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=ex,y=ey,anchor='center')
+        print('X : ' + str(ex) + " Y : " + str(ey))
         x = self.win.winfo_pointerx() - self.win.winfo_rootx()
         y = self.win.winfo_pointery() - self.win.winfo_rooty()
         txt.place(x=x-10 , y = y+20)
     
     #widget master up
     def widget_master_up(self, e, inp):
-        self.move(e)
+        # self.move(e)
         self.delete(e, inp)
-        self.move_input_up(inp)
+        self.move_input_up(e, inp)
 
     #widget master down
     def widget_master_down(self, e, inp):
-        self.move(e)
+        # self.move(e)
         self.delete(e, inp)
-        self.move_input_down(inp)
+        self.move_input_down(e, inp)
     
     # Displays crossection picture  
     def display_crossection_picture(self, c):
@@ -273,7 +280,7 @@ class Window:
     # Creating arrows
     def create_up_arrow(self):
         self.arrow_up_lab = tk.Label(self.frame2,image = self.resized_arrow_up_pic, bg = '#006665')
-        self.arrow_up_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.arrow_up_lab.place(height = 30, width = 30, x=random.randrange(130,140), y=random.randrange(260,270))
         self.arrow_list.append(self.arrow_up_lab)
         self.entry = self.Entry(self.win)
         self.arrow_up_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
@@ -281,7 +288,7 @@ class Window:
         return
     def create_down_arrow(self):
         self.arrow_down_lab = tk.Label(self.frame2,image = self.resized_arrow_down_pic, bg = '#006665')
-        self.arrow_down_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.arrow_down_lab.place(height = 30, width = 30, x=random.randrange(130,140), y=random.randrange(140,150))
         self.arrow_list.append(self.arrow_down_lab)
         self.entry = self.Entry(self.win)
         self.arrow_down_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
@@ -289,7 +296,7 @@ class Window:
         return
     def create_moment_ac(self):
         self.moment_ac_lab = tk.Label(self.frame2,image = self.resized_moment_ac_pic, bg = '#006665')
-        self.moment_ac_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.moment_ac_lab.place(height = 30, width = 30, x=random.randrange(130,140), y=random.randrange(140,150))
         self.arrow_list.append(self.moment_ac_lab)
         self.entry = self.Entry(self.win)
         self.moment_ac_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
@@ -297,7 +304,7 @@ class Window:
         return
     def create_moment_c(self):
         self.moment_c_lab = tk.Label(self.frame2,image = self.resized_moment_c_pic, bg = '#006665')
-        self.moment_c_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.moment_c_lab.place(height = 30, width = 30, x=random.randrange(130,140), y=random.randrange(140,150))
         self.arrow_list.append(self.moment_c_lab)
         self.entry = self.Entry(self.win)
         self.moment_c_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
@@ -305,7 +312,7 @@ class Window:
         return
     def create_uniform_load(self):
         self.uniform_load_lab = tk.Label(self.frame2,image = self.resized_g_uniform_pic, bg = '#006665')
-        self.uniform_load_lab.place(height = 40, width = 80, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.uniform_load_lab.place(height = 40, width = 80, x=random.randrange(130,140), y=random.randrange(140,150))
         self.arrow_list.append(self.uniform_load_lab)
         self.entry = self.Entry(self.win)
         self.uniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
@@ -313,7 +320,7 @@ class Window:
         return
     def create_nonuniform_load(self):
         self.nonuniform_load_lab = tk.Label(self.frame2,image = self.resized_g_nonuniform_pic, bg = '#006665')
-        self.nonuniform_load_lab.place(height = 40, width = 80, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.nonuniform_load_lab.place(height = 40, width = 80, x=random.randrange(130,140), y=random.randrange(140,150))
         self.arrow_list.append(self.nonuniform_load_lab)
         self.entry = self.Entry(self.win)
         self.nonuniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
@@ -321,7 +328,7 @@ class Window:
         return
     def create_usd_uniform_load(self):
         self.usd_uniform_load_lab = tk.Label(self.frame2,image = self.resized_g_usd_uniform_pic, bg = '#006665')
-        self.usd_uniform_load_lab.place(height = 40, width = 80, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.usd_uniform_load_lab.place(height = 40, width = 80, x=random.randrange(130,140), y=random.randrange(260,270))
         self.arrow_list.append(self.usd_uniform_load_lab)
         self.entry = self.Entry(self.win)
         self.usd_uniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
@@ -329,7 +336,7 @@ class Window:
         return
     def create_usd_nonuniform_load(self):
         self.usd_nonuniform_load_lab = tk.Label(self.frame2,image = self.resized_g_usd_nonuniform_pic, bg = '#006665')
-        self.usd_nonuniform_load_lab.place(height = 40, width = 80, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.usd_nonuniform_load_lab.place(height = 40, width = 80, x=random.randrange(130,140), y=random.randrange(260,270))
         self.arrow_list.append(self.usd_nonuniform_load_lab)
         self.entry = self.Entry(self.win)
         self.usd_nonuniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
@@ -357,6 +364,10 @@ class Window:
     #Entry class
     class Entry:
         def __init__(self, win):
-            self.text = tk.Text(win, height =1, width = 2)
+            self.text = tk.Text(win, height =1, width = 4)
     
 root = Window()
+
+# Remember down pointing arrows y = 170 - 172
+# Remember up pointing arrows y = 260 - 262
+
