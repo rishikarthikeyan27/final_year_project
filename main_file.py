@@ -142,6 +142,9 @@ class Window:
         #List of all the supports that have been added
         self.support_list = []
 
+        #List of all inputs
+        self.input_list = []
+
 
         #mainloop
         self.win.mainloop()
@@ -163,6 +166,9 @@ class Window:
         for i in self.arrow_list:
             i.destroy()
         self.arrow_list.clear()
+        for j in self.input_list:
+            j.destroy()
+        self.input_list.clear()
         print(self.arrow_list)
     
     def del_all_supports(self):
@@ -262,6 +268,7 @@ class Window:
         self.arrow_list.append(self.arrow_up_lab)
         self.entry = self.Entry(self.win)
         self.arrow_up_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
+        self.input_list.append(self.entry.text)
         return
     def create_down_arrow(self):
         self.arrow_down_lab = tk.Label(self.frame2,image = self.resized_arrow_down_pic, bg = '#006665')
@@ -269,6 +276,7 @@ class Window:
         self.arrow_list.append(self.arrow_down_lab)
         self.entry = self.Entry(self.win)
         self.arrow_down_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
+        self.input_list.append(self.entry.text)
         return
     def create_moment_ac(self):
         self.moment_ac_lab = tk.Label(self.frame2,image = self.resized_moment_ac_pic, bg = '#006665')
@@ -276,6 +284,7 @@ class Window:
         self.arrow_list.append(self.moment_ac_lab)
         self.entry = self.Entry(self.win)
         self.moment_ac_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
+        self.input_list.append(self.entry.text)
         return
     def create_moment_c(self):
         self.moment_c_lab = tk.Label(self.frame2,image = self.resized_moment_c_pic, bg = '#006665')
@@ -283,6 +292,7 @@ class Window:
         self.arrow_list.append(self.moment_c_lab)
         self.entry = self.Entry(self.win)
         self.moment_c_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
+        self.input_list.append(self.entry.text)
         return
     def create_uniform_load(self):
         self.uniform_load_lab = tk.Label(self.frame2,image = self.resized_g_uniform_pic, bg = '#006665')
@@ -290,6 +300,7 @@ class Window:
         self.arrow_list.append(self.uniform_load_lab)
         self.entry = self.Entry(self.win)
         self.uniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
+        self.input_list.append(self.entry.text)
         return
     def create_nonuniform_load(self):
         self.nonuniform_load_lab = tk.Label(self.frame2,image = self.resized_g_nonuniform_pic, bg = '#006665')
@@ -297,6 +308,7 @@ class Window:
         self.arrow_list.append(self.nonuniform_load_lab)
         self.entry = self.Entry(self.win)
         self.nonuniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
+        self.input_list.append(self.entry.text)
         return
     def create_usd_uniform_load(self):
         self.usd_uniform_load_lab = tk.Label(self.frame2,image = self.resized_g_usd_uniform_pic, bg = '#006665')
@@ -304,6 +316,7 @@ class Window:
         self.arrow_list.append(self.usd_uniform_load_lab)
         self.entry = self.Entry(self.win)
         self.usd_uniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
+        self.input_list.append(self.entry.text)
         return
     def create_usd_nonuniform_load(self):
         self.usd_nonuniform_load_lab = tk.Label(self.frame2,image = self.resized_g_usd_nonuniform_pic, bg = '#006665')
@@ -311,6 +324,7 @@ class Window:
         self.arrow_list.append(self.usd_nonuniform_load_lab)
         self.entry = self.Entry(self.win)
         self.usd_nonuniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
+        self.input_list.append(self.entry.text)
         return
     
     # Creating supports
