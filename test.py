@@ -53,7 +53,6 @@ class Dog:
         self.puppy_label.place(height = 60, width = 50, x= random.randint(300,400), y = random.randint(300, 400))
         self.puppy_list.append(self.puppy_label)
         self.entry = self.Entry(self.win)
-        self.puppy_label.bind('<B1-Motion>', self.master_move)
         self.puppy_label.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.master_move(event, txt))
         return
     class Entry:
