@@ -20,6 +20,10 @@ class Window:
         self.frame3 = tk.Frame(master=self.win, width=680, height=315, bg="#006665")
         self.frame3.pack(fill=tk.Y, padx=5, pady=15,side=tk.BOTTOM, expand=False)
 
+        self.submit_button = tk.Button(self.frame3,
+                                text="Read Label Text", command = self.read_support_text)
+        self.submit_button.pack()
+
         #Load label
         self.load_selection_lab = ttk.Label(self.frame1, text = "Please Select Loads", background = '#006665', font=("Helvetica",9, 'bold'))
         self.load_selection_lab.place(height = 30, width = 140, x=80, y=5)
@@ -152,16 +156,8 @@ class Window:
         #List of all inputs
         self.input_list = []
 
-
-
         #mainloop
         self.win.mainloop()
-
-    # #Widget move
-    # def move(self, e):
-    #     x = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
-    #     y = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
-    #     e.widget.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=x,y=y,anchor='center')
 
     #Widget delete
     def delete(self, e, inp):        
@@ -169,7 +165,7 @@ class Window:
             e.widget.destroy()
             inp.destroy()
             print("Done destroying")
-
+    
     def del_all_loads(self):
         for i in self.arrow_list:
             i.destroy()
@@ -190,7 +186,6 @@ class Window:
         ex = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
         ey = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
         e.widget.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=ex,y=ey,anchor='center')
-        print('X : ' + str(ex) + " Y : " + str(ey))
         x = self.win.winfo_pointerx() - self.win.winfo_rootx()
         y = self.win.winfo_pointery() - self.win.winfo_rooty()
         txt.place(x=x-10 , y = y-40)
@@ -200,10 +195,21 @@ class Window:
         ex = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
         ey = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
         e.widget.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=ex,y=ey,anchor='center')
-        print('X : ' + str(ex) + " Y : " + str(ey))
         x = self.win.winfo_pointerx() - self.win.winfo_rootx()
         y = self.win.winfo_pointery() - self.win.winfo_rooty()
         txt.place(x=x-10 , y = y+20)
+    
+    #Delete Support
+    def delete_support(self, e):
+        if((str(self.bin_label.winfo_rootx())[0] + str(self.bin_label.winfo_rootx())[1]) == (str(e.widget.winfo_rootx())[0] + str(e.widget.winfo_rootx())[1])) and ((str(self.bin_label.winfo_rooty())[0] + str(self.bin_label.winfo_rooty())[1]) == (str(e.widget.winfo_rooty())[0] + str(e.widget.winfo_rooty())[1])):
+            e.widget.destroy()
+            print("Done destroying")
+    
+    #Move Support
+    def move_support(self, e):
+        ex = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
+        ey = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
+        e.widget.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=ex,y=ey,anchor='center')
     
     #widget master up
     def widget_master_up(self, e, inp):
@@ -216,6 +222,10 @@ class Window:
         # self.move(e)
         self.delete(e, inp)
         self.move_input_down(e, inp)
+    
+    def support_master(self, e):
+        self.delete_support(e)
+        self.move_support(e)
     
     # Displays crossection picture  
     def display_crossection_picture(self, c):
@@ -345,28 +355,32 @@ class Window:
     
     # Creating supports
     def create_simple_support(self):
-        self.simple_support_lab = tk.Label(self.frame2, image = self.resized_beam_simple_support)
-        self.simple_support_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.simple_support_lab = tk.Label(self.win, text = "simple", image = self.resized_beam_simple_support)
         self.support_list.append(self.simple_support_lab)
-        self.simple_support_lab.bind('<B1-Motion>', self.widget_master)
+        self.simple_support_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
+        # print(self.support_list[0].cget("Text"))
+        self.simple_support_lab.bind('<B1-Motion>', self.support_master)
         return
     def create_fixed_support(self):
-        self.fixed_support_lab = tk.Label(self.frame2, image = self.resized_beam_fixed_support)
-        self.fixed_support_lab.place(height = 100, width = 30, x=120, y = 180)
+        self.fixed_support_lab = tk.Label(self.win, text = "fixed", image = self.resized_beam_fixed_support)
         self.support_list.append(self.fixed_support_lab)
-        self.fixed_support_lab.bind('<B1-Motion>', self.widget_master)
+        self.fixed_support_lab.place(height = 100, width = 30, x=120, y = 170)
+        self.fixed_support_lab.bind('<B1-Motion>', self.support_master)
         return
     
-    # Print arrow_list
-    def print_arrow_list(self):
-        print(self.arrow_list)
-
+    def read_support_text(self):
+        for i in self.support_list:
+            print(i.cget('text'))
+            
     #Entry class
     class Entry:
         def __init__(self, win):
-            self.text = tk.Text(win, height =1, width = 4)
+            self.text = tk.Text(win, height = 1, width = 4)
     
-root = Window()
+root = Window() 
+
+
+
 
 # Remember down pointing arrows y = 170 - 172
 # Remember up pointing arrows y = 260 - 262
