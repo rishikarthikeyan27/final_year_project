@@ -100,7 +100,7 @@ class Window:
         self.support_selection_lab.place(height = 30, width = 140, x=75, y=230)
 
         #Simple Support
-        self.simple_support_pic = Image.open('images/simple_support.png').resize((60,50), Image.ANTIALIAS)
+        self.simple_support_pic = Image.open('images/simple_support.png').resize((25,25), Image.ANTIALIAS)
         self.resized_simple_support_pic = ImageTk.PhotoImage(self.simple_support_pic)
         self.simple_support_button = tk.Button(self.frame1, image = self.resized_simple_support_pic, bg = 'black', command = self.create_simple_support)
         self.simple_support_button.place(height = 40, width = 80, x=61, y=260)
