@@ -22,7 +22,7 @@ class Window:
         self.frame3.pack(fill=tk.Y, padx=5, pady=15,side=tk.BOTTOM, expand=False)
 
         self.submit_button = tk.Button(self.frame3,
-                                text="Read Label Text", command = self.get_arrow_length)
+                                text="Read Label Text", command = self.length_in_meters)
         self.submit_button.pack()
 
         #Load label
@@ -392,21 +392,34 @@ class Window:
     def read_support_text(self):
         for i in self.support_list:
             print(i.cget('text'))
-    
+
+
     def get_arrow_length(self):
         entry = int(self.beam_length_number.get())
         print(entry)
         init = 1
         for i in self.arrow_list:
             # print("In meters : " + str(math.floor((int(entry)/400)*(int(i.winfo_x())-610))))
+            print("In meters : " + str((int(entry)/400)*(int(i.winfo_x())-150)))
             print("Arrow"+str(init)+" : "+str(i.winfo_x()))
+            init+=1
+
+    def get_support_length(self):
+        entry = int(self.beam_length_number.get())
+        print(entry)
+        init = 1
+        for i in self.support_list:
+            # print("In meters : " + str(math.floor((int(entry)/400)*(int(i.winfo_x())-610))))
+            print("In meters : " + str(int((int(entry)/400)*(int(i.winfo_x())-150))))
+            print("Support"+str(init)+" : "+str(i.winfo_x()))
             init+=1
         
         print("Label : " + str(self.beam_lab.winfo_x()))
-        # we need to get x coordinate of 1 arrow
-        # we need to get the length at which the arrow is in 
-        # we need to get coordinates of all arrows as tuples in a list
-        # we need to get 
+        
+    def length_in_meters(self):
+        self.get_arrow_length()
+        self.get_support_length()
+    
     
     def to_calc(self, cross):
         #sending data over to calc file
@@ -421,11 +434,9 @@ class Window:
 root = Window()
 
 
-# Remember ==> 547 - 945 
+# If the x coordinate of the arrow is below 150 and above 130 take it as 150. 
+#That is the only slight problem
 
-
-
-
-# Remember down pointing arrows y = 170 - 172
-# Remember up pointing arrows y = 260 - 262
+# If the x coordinate of the arrow is below 550 and above 530 take it as 550. 
+#That is the only slight problem
 
