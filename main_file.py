@@ -3,7 +3,7 @@ import tkinter.ttk as ttk
 from PIL import ImageTk, Image
 import random
 import calc_file as cf
-
+import math
 class Window:
 
     #Init
@@ -21,9 +21,9 @@ class Window:
         self.frame3 = tk.Frame(master=self.win, width=680, height=315, bg="#006665")
         self.frame3.pack(fill=tk.Y, padx=5, pady=15,side=tk.BOTTOM, expand=False)
 
-        # self.submit_button = tk.Button(self.frame3,
-        #                         text="Read Label Text", command = self.to_calc)
-        # self.submit_button.pack()
+        self.submit_button = tk.Button(self.frame3,
+                                text="Read Label Text", command = self.get_arrow_length)
+        self.submit_button.pack()
 
         #Load label
         self.load_selection_lab = ttk.Label(self.frame1, text = "Please Select Loads", background = '#006665', font=("Helvetica",9, 'bold'))
@@ -122,7 +122,7 @@ class Window:
         self.beam_length_number = tk.StringVar()
         #Beam Length Label
         self.beam_length_label = tk.Label(self.win, width = 50, height = 50, text = "Enter the beam length : ", bg = '#006665',font=("Helvetica",9, 'bold'))
-        self.beam_length_label.place(height = 30, width = 140, x=20, y=490)
+        self.beam_length_label.place(height = 30, width = 142, x=20, y=490)
         #Enter length of beam
         self.beam_length = tk.Entry(self.win, text = self.beam_length_number)
         self.beam_length.place(x = 160, y = 495)
@@ -319,7 +319,7 @@ class Window:
         return
     def create_down_arrow(self):
         self.arrow_down_lab = tk.Label(self.frame2,image = self.resized_arrow_down_pic, bg = '#006665')
-        self.arrow_down_lab.place(height = 30, width = 30, x=random.randrange(130,140), y=random.randrange(140,150))
+        self.arrow_down_lab.place(height = 30, width = 30, x=random.randrange(130,140), y=random.randrange(140,150), anchor = "c")
         self.arrow_list.append(self.arrow_down_lab)
         self.entry = self.Entry(self.win)
         self.arrow_down_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
@@ -393,6 +393,21 @@ class Window:
         for i in self.support_list:
             print(i.cget('text'))
     
+    def get_arrow_length(self):
+        entry = int(self.beam_length_number.get())
+        print(entry)
+        init = 1
+        for i in self.arrow_list:
+            # print("In meters : " + str(math.floor((int(entry)/400)*(int(i.winfo_x())-610))))
+            print("Arrow"+str(init)+" : "+str(i.winfo_x()))
+            init+=1
+        
+        print("Label : " + str(self.beam_lab.winfo_x()))
+        # we need to get x coordinate of 1 arrow
+        # we need to get the length at which the arrow is in 
+        # we need to get coordinates of all arrows as tuples in a list
+        # we need to get 
+    
     def to_calc(self, cross):
         #sending data over to calc file
         print(cf.print_test(self.beam_length_number.get(), cross))
@@ -404,6 +419,10 @@ class Window:
             self.text = tk.Text(win, height = 1, width = 4)
     
 root = Window()
+
+
+# Remember ==> 547 - 945 
+
 
 
 
