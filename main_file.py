@@ -286,8 +286,10 @@ class Window:
             img_label.place(x= 100, y=400)
             
             #add Rectangular cross section picture on frame 2
+            self.rect_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
+            self.rect_canvas.place(width = 100, height = 100, x = 500, y = 160)
             self.rect = ImageTk.PhotoImage(Image.open('images/r_crossection.png').resize((100, 100), Image.ANTIALIAS))
-            self.cross_canvas.create_image(50, 50,image = self.rect)
+            self.rect_canvas.create_image(50, 50,image = self.rect)
             
         if(c == "I"):
             #add I cross section picture
@@ -299,6 +301,13 @@ class Window:
             print('width : ' + str(resized_image.width()), 'height : ' + str(resized_image.height()))
             img_canvas.place(x= 100, y=400)  
             img_canvas.create_image(40, 30, image = resized_image, tag = "I")
+
+            #add I cross section picture on frame 2
+            self.i_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
+            self.i_canvas.place(width = 100, height = 100, x = 500, y = 160)
+            self.i = ImageTk.PhotoImage(Image.open('images/i_crossection.png').resize((100, 100), Image.ANTIALIAS))
+            self.i_canvas.create_image(50, 50,image = self.i)
+
         if(c == "T"):
             #add T cross section picture
             img = Image.open('images/t.png').resize((60, 60), Image.ANTIALIAS)
@@ -309,6 +318,12 @@ class Window:
             print('width : ' + str(resized_image.width()), 'height : ' + str(resized_image.height()))
             img_canvas.place(x= 100, y=400)  
             img_canvas.create_image(40, 30, image = resized_image, tag = "T")
+
+            #add T cross section picture on frame 2
+            self.t_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
+            self.t_canvas.place(width = 100, height = 100, x = 500, y = 160)
+            self.t = ImageTk.PhotoImage(Image.open('images/t_crossection.png').resize((100, 100), Image.ANTIALIAS))
+            self.t_canvas.create_image(50, 50,image = self.t)
         if(c == "C"):
             #add C cross section picture
             img = Image.open('images/c.png').resize((60, 60), Image.ANTIALIAS)
@@ -319,6 +334,12 @@ class Window:
             print('width : ' + str(resized_image.width()), 'height : ' + str(resized_image.height()))
             img_canvas.place(x= 100, y=400)  
             img_canvas.create_image(40, 30, image = resized_image, tag = "C")
+
+            #add C cross section picture on frame 2
+            self.c_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
+            self.c_canvas.place(width = 100, height = 100, x = 500, y = 160)
+            self.c = ImageTk.PhotoImage(Image.open('images/c_crossection.png').resize((100, 100), Image.ANTIALIAS))
+            self.c_canvas.create_image(50, 50,image = self.c)
         if(c == "O"):
             #add O cross section picture
             img = Image.open('images/o.png').resize((60, 60), Image.ANTIALIAS)
@@ -329,6 +350,12 @@ class Window:
             print('width : ' + str(resized_image.width()), 'height : ' + str(resized_image.height()))
             img_canvas.place(x= 100, y=400)  
             img_canvas.create_image(28, 32, image = resized_image, tag = "O")
+
+            #add C cross section picture on frame 2
+            self.o_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
+            self.o_canvas.place(width = 100, height = 100, x = 500, y = 160)
+            self.o = ImageTk.PhotoImage(Image.open('images/o_crossection.png').resize((100, 100), Image.ANTIALIAS))
+            self.o_canvas.create_image(50, 50,image = self.o)
     
     # Crossection OptionMenu master function
     def master_crossection_function(self, choice):
@@ -464,9 +491,9 @@ class Window:
         self.print_nodes_and_elements()
     
     
-    def to_calc(self, cross):
-        #sending data over to calc file
-        print(cf.print_test(self.beam_length_number.get(), cross))
+    # def to_calc(self, cross):
+    #     #sending data over to calc file
+    #     print(cf.print_test(self.beam_length_number.get(), cross))
 
     
     #Entry class
