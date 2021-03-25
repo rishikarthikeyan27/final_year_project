@@ -321,9 +321,9 @@ class Window:
 
             #add T cross section picture on frame 2
             self.t_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
-            self.t_canvas.place(width = 100, height = 100, x = 500, y = 160)
-            self.t = ImageTk.PhotoImage(Image.open('images/t_crossection.png').resize((100, 100), Image.ANTIALIAS))
-            self.t_canvas.create_image(50, 50,image = self.t)
+            self.t_canvas.place(width = 130, height = 130, x = 500, y = 160)
+            self.t = ImageTk.PhotoImage(Image.open('images/t_crossection.png').resize((130, 130), Image.ANTIALIAS))
+            self.t_canvas.create_image(65, 65,image = self.t)
         if(c == "C"):
             #add C cross section picture
             img = Image.open('images/c.png').resize((60, 60), Image.ANTIALIAS)
@@ -495,8 +495,7 @@ class Window:
         #get number of elements
         #get moment of inertia
         #get youngs modulus
-    
-
+        pass
     
     #Entry class
     class Entry:
