@@ -189,6 +189,9 @@ class Window:
         #List of all inputs
         self.input_list = []
 
+        #crossection canvas list
+        self.cross_canvas_list = []
+
         #mainloop
         self.win.mainloop()
 
@@ -287,9 +290,10 @@ class Window:
             
             #add Rectangular cross section picture on frame 2
             self.rect_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
-            self.rect_canvas.place(width = 100, height = 100, x = 500, y = 160)
-            self.rect = ImageTk.PhotoImage(Image.open('images/r_crossection.png').resize((100, 100), Image.ANTIALIAS))
-            self.rect_canvas.create_image(50, 50,image = self.rect)
+            self.rect_canvas.place(width = 130, height = 130, x = 500, y = 160)
+            self.rect = ImageTk.PhotoImage(Image.open('images/r_crossection.png').resize((130, 130), Image.ANTIALIAS))
+            self.rect_canvas.create_image(65, 65,image = self.rect)
+            self.cross_canvas_list.append(self.rect_canvas)
             
         if(c == "I"):
             #add I cross section picture
@@ -304,9 +308,10 @@ class Window:
 
             #add I cross section picture on frame 2
             self.i_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
-            self.i_canvas.place(width = 100, height = 100, x = 500, y = 160)
-            self.i = ImageTk.PhotoImage(Image.open('images/i_crossection.png').resize((100, 100), Image.ANTIALIAS))
-            self.i_canvas.create_image(50, 50,image = self.i)
+            self.i_canvas.place(width = 130, height = 130, x = 500, y = 160)
+            self.i = ImageTk.PhotoImage(Image.open('images/i_crossection.png').resize((130, 130), Image.ANTIALIAS))
+            self.i_canvas.create_image(65, 65,image = self.i)
+            self.cross_canvas_list.append(self.i_canvas)
 
         if(c == "T"):
             #add T cross section picture
@@ -324,6 +329,8 @@ class Window:
             self.t_canvas.place(width = 130, height = 130, x = 500, y = 160)
             self.t = ImageTk.PhotoImage(Image.open('images/t_crossection.png').resize((130, 130), Image.ANTIALIAS))
             self.t_canvas.create_image(65, 65,image = self.t)
+            self.cross_canvas_list.append(self.t_canvas)
+
         if(c == "C"):
             #add C cross section picture
             img = Image.open('images/c.png').resize((60, 60), Image.ANTIALIAS)
@@ -337,9 +344,10 @@ class Window:
 
             #add C cross section picture on frame 2
             self.c_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
-            self.c_canvas.place(width = 100, height = 100, x = 500, y = 160)
-            self.c = ImageTk.PhotoImage(Image.open('images/c_crossection.png').resize((100, 100), Image.ANTIALIAS))
-            self.c_canvas.create_image(50, 50,image = self.c)
+            self.c_canvas.place(width = 130, height = 130, x = 500, y = 160)
+            self.c = ImageTk.PhotoImage(Image.open('images/c_crossection.png').resize((130, 130), Image.ANTIALIAS))
+            self.c_canvas.create_image(65, 65,image = self.c)
+            self.cross_canvas_list.append(self.c_canvas)
         if(c == "O"):
             #add O cross section picture
             img = Image.open('images/o.png').resize((60, 60), Image.ANTIALIAS)
@@ -353,9 +361,10 @@ class Window:
 
             #add C cross section picture on frame 2
             self.o_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
-            self.o_canvas.place(width = 100, height = 100, x = 500, y = 160)
-            self.o = ImageTk.PhotoImage(Image.open('images/o_crossection.png').resize((100, 100), Image.ANTIALIAS))
-            self.o_canvas.create_image(50, 50,image = self.o)
+            self.o_canvas.place(width = 130, height = 130, x = 500, y = 160)
+            self.o = ImageTk.PhotoImage(Image.open('images/o_crossection.png').resize((130, 130), Image.ANTIALIAS))
+            self.o_canvas.create_image(65, 65,image = self.o)
+            self.cross_canvas_list.append(self.o_canvas)
     
     # Crossection OptionMenu master function
     def master_crossection_function(self, choice):
