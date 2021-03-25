@@ -267,11 +267,11 @@ class Window:
         self.add_dist_lab_up(e, lab)
 
     #widget master down
-    def widget_master_down(self, e, inp, rel_len):
+    def widget_master_down(self, e, inp, lab):
         # self.move(e)
         self.delete(e, inp)
         self.move_input_down(e, inp)
-        # self.add_dist_lab_down(e,rel_len)
+        self.add_dist_lab_down(e,lab)
     
     def support_master(self, e):
         self.delete_support(e)
@@ -381,7 +381,8 @@ class Window:
         self.arrow_up_lab.place(height = 30, width = 30, x=random.randrange(130,140), y=random.randrange(260,270))
         self.arrow_list.append(self.arrow_up_lab)
         self.entry = self.Entry(self.win)
-        self.arrow_up_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
+        self.arrow_len = self.len_lab(self.frame2)
+        self.arrow_up_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text, lab = self.arrow_len.arrow_rel_len_lab: self.widget_master_down(event, txt, lab))
         self.input_list.append(self.entry.text)
         return
     def create_down_arrow(self):
@@ -398,7 +399,8 @@ class Window:
         self.moment_ac_lab.place(height = 30, width = 30, x=random.randrange(130,140), y=random.randrange(140,150))
         self.arrow_list.append(self.moment_ac_lab)
         self.entry = self.Entry(self.win)
-        self.moment_ac_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
+        self.arrow_len = self.len_lab(self.frame2)
+        self.moment_ac_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text, lab = self.arrow_len.arrow_rel_len_lab: self.widget_master_up(event, txt, lab))
         self.input_list.append(self.entry.text)
         return
     def create_moment_c(self):
@@ -406,7 +408,8 @@ class Window:
         self.moment_c_lab.place(height = 30, width = 30, x=random.randrange(130,140), y=random.randrange(140,150))
         self.arrow_list.append(self.moment_c_lab)
         self.entry = self.Entry(self.win)
-        self.moment_c_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
+        self.arrow_len = self.len_lab(self.frame2)
+        self.moment_c_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text, lab = self.arrow_len.arrow_rel_len_lab: self.widget_master_up(event, txt, lab))
         self.input_list.append(self.entry.text)
         return
     def create_uniform_load(self):
@@ -414,7 +417,8 @@ class Window:
         self.uniform_load_lab.place(height = 40, width = 80, x=random.randrange(130,140), y=random.randrange(140,150))
         self.arrow_list.append(self.uniform_load_lab)
         self.entry = self.Entry(self.win)
-        self.uniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
+        self.arrow_len = self.len_lab(self.frame2)
+        self.uniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text, lab = self.arrow_len.arrow_rel_len_lab: self.widget_master_up(event, txt, lab))
         self.input_list.append(self.entry.text)
         return
     def create_nonuniform_load(self):
@@ -422,7 +426,8 @@ class Window:
         self.nonuniform_load_lab.place(height = 40, width = 80, x=random.randrange(130,140), y=random.randrange(140,150))
         self.arrow_list.append(self.nonuniform_load_lab)
         self.entry = self.Entry(self.win)
-        self.nonuniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_up(event, txt))
+        self.arrow_len = self.len_lab(self.frame2)
+        self.nonuniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text, lab = self.arrow_len.arrow_rel_len_lab: self.widget_master_up(event, txt, lab))
         self.input_list.append(self.entry.text)
         return
     def create_usd_uniform_load(self):
@@ -430,7 +435,8 @@ class Window:
         self.usd_uniform_load_lab.place(height = 40, width = 80, x=random.randrange(130,140), y=random.randrange(260,270))
         self.arrow_list.append(self.usd_uniform_load_lab)
         self.entry = self.Entry(self.win)
-        self.usd_uniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
+        self.arrow_len = self.len_lab(self.frame2)
+        self.usd_uniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text, lab = self.arrow_len.arrow_rel_len_lab: self.widget_master_down(event, txt, lab))
         self.input_list.append(self.entry.text)
         return
     def create_usd_nonuniform_load(self):
@@ -438,7 +444,8 @@ class Window:
         self.usd_nonuniform_load_lab.place(height = 40, width = 80, x=random.randrange(130,140), y=random.randrange(260,270))
         self.arrow_list.append(self.usd_nonuniform_load_lab)
         self.entry = self.Entry(self.win)
-        self.usd_nonuniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text: self.widget_master_down(event, txt))
+        self.arrow_len = self.len_lab(self.frame2)
+        self.usd_nonuniform_load_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text, lab = self.arrow_len.arrow_rel_len_lab: self.widget_master_down(event, txt, lab))
         self.input_list.append(self.entry.text)
         return
     
@@ -512,12 +519,18 @@ class Window:
         if self.lenn <= int(self.beam_length_number.get()):
             lab.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=ex+7,y=ey-55,anchor='center')
 
+    def add_dist_lab_down(self, e, lab):
         
+        self.lenn = round(self.get_arrow_length(e.widget), 2)
+        if self.lenn > (int(self.beam_length_number.get())+0.3):
+            self.lenn = self.lenn+0.3
+        lab.config(text = str(self.lenn+0.5))
+        ex = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
+        ey = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
+        if self.lenn <= int(self.beam_length_number.get()):
+            lab.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=ex+27,y=ey,anchor='center')
 
 
-        
-        
-    
     def info(self):
         #get number of nodes
         #get number of elements
@@ -531,7 +544,7 @@ class Window:
             self.text = tk.Text(win, height = 1, width = 4)
     class len_lab:
         def __init__(self, win):
-            self.arrow_rel_len_lab = tk.Label(win)
+            self.arrow_rel_len_lab = tk.Label(win, bg = "#006665")
             print("new label")
             
     
