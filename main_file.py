@@ -490,10 +490,12 @@ class Window:
         self.get_support_length()
         self.print_nodes_and_elements()
     
+    def info(self):
+        #get number of nodes
+        #get number of elements
+        #get moment of inertia
+        #get youngs modulus
     
-    # def to_calc(self, cross):
-    #     #sending data over to calc file
-    #     print(cf.print_test(self.beam_length_number.get(), cross))
 
     
     #Entry class
