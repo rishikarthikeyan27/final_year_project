@@ -1,48 +1,49 @@
 #Remember that this file is strictly for just calculations, so tkinter stuff must be going on
 
-def calc_t_i(B, h, H, b):
-
+def calc_tbeam_i(B, h, H, b):
     centroid_numerator = ((H+(h/2))*(B*h))+((H/2)*(b*H))
     centroid_denominator = ((B*h)+(b*H))
-
     centroid = centroid_numerator/centroid_denominator
-
     I1 = (1/12)*B*(h**3)
     I2 = (1/12)*b*(H**3)
-
     A1 = B*h
     A2 = b*H
-
     d1 = (H+(h/2)) - centroid
     d2 = centroid - (H/2)
-
     t_i = (I1 + (A1*(d1**2))) + (I2 + (A2*(d2**2)))
-
     return t_i
 
-def calc_c_i(B, h, H, b):
-
+def calc_cbeam_i(B, h, H, b):
     I1 = (1/12)*B*(h**3)
     I2 = (1/12)*b*(H**3)
-
     A1 = B*h
     A2 = b*H
-
     #d1,d2
     d1 = ((h/2)+H+(h/2))/2
     d2 = 0
-    
     c_i = (2*(I1 + (A1*(d1**2)))) + (I2 + (A2*(d2**2)))
     return c_i
 
-print(calc_c_i(100,30,100,30))
 
-def calc_i_i():
-    pass
+def calc_ibeam_i(B,h,H,b):
+    I1 = (1/12)*B*(h**3)
+    I2 = (1/12)*b*(H**3)
+    A1 = B*h
+    A2 = b*H
+    #d1,d2
+    d1 = ((h/2)+H+(h/2))/2
+    d2 = 0
+    i_i = (2*(I1 + (A1*(d1**2)))) + (I2 + (A2*(d2**2)))
+    return i_i
 
-def calc_r_i(B,H):
+
+def calc_rbeam_i(B,H):
     r_i = (1/12)*B*(H**3)
     return r_i
+
+def calc_obeam_i(r):
+    o_i = ((3.14)*(r**4))/4
+    return o_i
 
 
 
