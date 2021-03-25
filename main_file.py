@@ -21,9 +21,9 @@ class Window:
         self.frame3 = tk.Frame(master=self.win, width=680, height=315, bg="#006665")
         self.frame3.pack(fill=tk.Y, padx=5, pady=15,side=tk.BOTTOM, expand=False)
 
-        self.submit_button = tk.Button(self.frame3,
-                                text="Read Label Text", command = self.length_in_meters)
-        self.submit_button.pack()
+        # self.submit_button = tk.Button(self.frame3,
+        #                         text="Read Label Text", command = self.length_in_meters)
+        # self.submit_button.place(width = 70, height = 50, x = 150, y= 150)
 
         #Load label
         self.load_selection_lab = ttk.Label(self.frame1, text = "Please Select Loads", background = '#006665', font=("Helvetica",9, 'bold'))
@@ -121,13 +121,25 @@ class Window:
 
         self.beam_length_number = tk.StringVar()
         #Beam Length Label
-        self.beam_length_label = tk.Label(self.win, width = 50, height = 50, text = "Enter the beam length : ", bg = '#006665',font=("Helvetica",9, 'bold'))
+        self.beam_length_label = tk.Label(self.win, width = 50, height = 50, text = "Beam Length : ", bg = '#006665',font=("Helvetica",9, 'bold'))
         self.beam_length_label.place(height = 30, width = 142, x=20, y=490)
         #Enter length of beam
         self.beam_length = tk.Entry(self.win, text = self.beam_length_number)
         self.beam_length.place(x = 160, y = 495)
+
+        #Youngs modulus input
+        self.e = tk.StringVar()
+        #Youngs Modulus Label
+        self.e_label = tk.Label(self.win, width = 50, height = 50, text = "Youngs Modulus : ", bg = '#006665',font=("Helvetica",9, 'bold'))
+        self.e_label.place(height = 30, width = 142, x=20, y= 519)
+        #Entery for Youngs modulus
+        self.e_val = tk.Entry(self.win, text = self.e)
+        self.e_val.place(x = 160, y = 523)
+
+
+        #Submit Button
         self.submit = tk.Button(self.win, text = "Submit", command = self.add_beam_length_label)
-        self.submit.place(height = 30, width = 140, x=60, y=550)
+        self.submit.place(height = 30, width = 140, x=60, y=600)
 
         #Create the beam picture
         self.beam_pic = Image.open('images/beam.png').resize((400, 50), Image.ANTIALIAS)
@@ -416,17 +428,21 @@ class Window:
         
         print("Label : " + str(self.beam_lab.winfo_x()))
     
-    def print_nodes_and_elements(self):
-        self.nodes = 0
-        self.elements = 1
+    def nodes(self):
+        self.nodes = 1
         for i in self.support_list:
             if i.cget("text") != "fixed":
                 self.nodes +=1
+        return self.nodes
+    
+    def elements(self):
+        self.elements = 1
+        for i in self.support_list:
+            if i.cget("text") != "fixed":
                 self.elements +=1
-        print ("Nodes : "+str(self.nodes))
-        print ("Elements : "+str(self.elements))
-            
+        return self.elements
         
+
     def length_in_meters(self):
         self.get_arrow_length()
         self.get_support_length()
