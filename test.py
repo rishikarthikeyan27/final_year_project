@@ -73,7 +73,7 @@ class Test():
         self.label1 = tk.Label(self.frame2,
                               text = "Text to be read", image = self.puppy)
         self.list.append(self.label1)
-        self.button = tk.Button(self.frame3,
+        self.button = tk.Button(self.frame2,
                                 text="Read Label Text")
         self.button.pack()
         self.label1.place(height = 50, width = 50, x = 10, y=10)

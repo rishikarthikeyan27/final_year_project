@@ -162,7 +162,6 @@ class Window:
         self.beam_0.place(width = 20, height = 20, x=40, y = 250)
 
 
-        
         #Bin
         self.bin_pic = Image.open('images/bin.png').resize((50, 50), Image.ANTIALIAS)
         self.resized_bin_pic = ImageTk.PhotoImage(self.bin_pic)
