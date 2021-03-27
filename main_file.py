@@ -166,7 +166,7 @@ class Window:
         self.bin_pic = Image.open('images/bin.png').resize((50, 50), Image.ANTIALIAS)
         self.resized_bin_pic = ImageTk.PhotoImage(self.bin_pic)
         self.bin_label= tk.Label(self.frame2, image = self.resized_bin_pic, bg = '#006665', borderwidth = 0)
-        self.bin_label.place( width = 50, height = 50, x=600, y = 15)
+        self.bin_label.place( width = 50, height = 50, x=150, y = 16)
 
         #Delete all loads
         self.delete_all_loads = ImageTk.PhotoImage(Image.open('images/delete_all_loads.png').resize((60, 60), Image.ANTIALIAS))
@@ -190,6 +190,9 @@ class Window:
 
         #crossection canvas list
         self.cross_canvas_list = []
+
+        #crossection entry fields
+        self.cross_entry = []
 
 
         #mainloop
@@ -297,6 +300,25 @@ class Window:
             self.rect = ImageTk.PhotoImage(Image.open('images/r_crossection.png').resize((130, 130), Image.ANTIALIAS))
             self.rect_canvas.create_image(65, 65,image = self.rect)
             self.cross_canvas_list.append(self.rect_canvas)
+
+            #add necessary fields of input
+            if (len(self.cross_entry)!=0):
+                for i in self.cross_entry:
+                    i.destroy()
+                self.cross_entry.clear()
+
+            self.entry_r_B_lab = tk.Label(self.frame2, text = 'B: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_r_B_lab.place(width = 25, height = 25, x = 430, y = 25)
+            self.entry_r_B = self.Entry(self.frame2)
+            self.entry_r_B.text.place(x = 450, y = 27)
+            self.cross_entry.extend([self.entry_r_B.text, self.entry_r_B_lab])
+
+            self.entry_r_H_lab = tk.Label(self.frame2, text = 'H: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_r_H_lab.place(width = 25, height = 25, x = 500, y = 25)
+            self.entry_r_H = self.Entry(self.frame2)
+            self.entry_r_H.text.place(x = 520, y = 27)
+            self.cross_entry.extend([self.entry_r_H.text, self.entry_r_H_lab])
+
             
         if(c == "I"):
             #add I cross section picture
@@ -316,6 +338,37 @@ class Window:
             self.i_canvas.create_image(65, 65,image = self.i)
             self.cross_canvas_list.append(self.i_canvas)
 
+            #add necessary fields of input
+            if len(self.cross_entry):
+                for i in self.cross_entry:
+                    print(i)
+                    i.destroy()
+                self.cross_entry.clear()
+                
+            self.entry_i_B_lab = tk.Label(self.frame2, text = 'B: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_i_B_lab.place(width = 25, height = 25, x = 400, y = 25)
+            self.entry_i_B = self.Entry(self.frame2)
+            self.entry_i_B.text.place(x = 420, y = 27)
+            self.cross_entry.extend([self.entry_i_B.text, self.entry_i_B_lab])
+
+            self.entry_i_H_lab = tk.Label(self.frame2, text = 'H: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_i_H_lab.place(width = 25, height = 25, x = 470, y = 25)
+            self.entry_i_H = self.Entry(self.frame2)
+            self.entry_i_H.text.place(x = 490, y = 27)
+            self.cross_entry.extend([self.entry_i_H.text, self.entry_i_H_lab])
+
+            self.entry_i_b_lab = tk.Label(self.frame2, text = 'b: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_i_b_lab.place(width = 25, height = 25, x = 540, y = 25)
+            self.entry_i_b = self.Entry(self.frame2)
+            self.entry_i_b.text.place(x = 560, y = 27)
+            self.cross_entry.extend([self.entry_i_b.text, self.entry_i_b_lab])
+
+            self.entry_i_h_lab = tk.Label(self.frame2, text = 'h: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_i_h_lab.place(width = 25, height = 25, x = 610, y = 25)
+            self.entry_i_h = self.Entry(self.frame2)
+            self.entry_i_h.text.place(x = 630, y = 27)
+            self.cross_entry.extend([self.entry_i_h.text, self.entry_i_h_lab])
+        
         if(c == "T"):
             #add T cross section picture
             img = Image.open('images/t.png').resize((60, 60), Image.ANTIALIAS)
@@ -334,6 +387,37 @@ class Window:
             self.t_canvas.create_image(65, 65,image = self.t)
             self.cross_canvas_list.append(self.t_canvas)
 
+            #add necessary fields of input
+            if len(self.cross_entry):
+                for i in self.cross_entry:
+                    print(i)
+                    i.destroy()
+                self.cross_entry.clear()
+                
+            self.entry_t_B_lab = tk.Label(self.frame2, text = 'B: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_t_B_lab.place(width = 25, height = 25, x = 400, y = 25)
+            self.entry_t_B = self.Entry(self.frame2)
+            self.entry_t_B.text.place(x = 420, y = 27)
+            self.cross_entry.extend([self.entry_t_B.text, self.entry_t_B_lab])
+
+            self.entry_t_H_lab = tk.Label(self.frame2, text = 'H: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_t_H_lab.place(width = 25, height = 25, x = 470, y = 25)
+            self.entry_t_H = self.Entry(self.frame2)
+            self.entry_t_H.text.place(x = 490, y = 27)
+            self.cross_entry.extend([self.entry_t_H.text, self.entry_t_H_lab])
+
+            self.entry_t_b_lab = tk.Label(self.frame2, text = 'b: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_t_b_lab.place(width = 25, height = 25, x = 540, y = 25)
+            self.entry_t_b = self.Entry(self.frame2)
+            self.entry_t_b.text.place(x = 560, y = 27)
+            self.cross_entry.extend([self.entry_t_b.text, self.entry_t_H_lab])
+
+            self.entry_t_h_lab = tk.Label(self.frame2, text = 'h: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_t_h_lab.place(width = 25, height = 25, x = 610, y = 25)
+            self.entry_t_h = self.Entry(self.frame2)
+            self.entry_t_h.text.place(x = 630, y = 27)
+            self.cross_entry.extend([self.entry_t_h.text, self.entry_t_h_lab])
+
         if(c == "C"):
             #add C cross section picture
             img = Image.open('images/c.png').resize((60, 60), Image.ANTIALIAS)
@@ -351,6 +435,38 @@ class Window:
             self.c = ImageTk.PhotoImage(Image.open('images/c_crossection.png').resize((130, 130), Image.ANTIALIAS))
             self.c_canvas.create_image(65, 65,image = self.c)
             self.cross_canvas_list.append(self.c_canvas)
+
+            #add necessary fields of input
+            if len(self.cross_entry):
+                for i in self.cross_entry:
+                    print(i)
+                    i.destroy()
+                self.cross_entry.clear()
+                
+            self.entry_c_B_lab = tk.Label(self.frame2, text = 'B: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_c_B_lab.place(width = 25, height = 25, x = 400, y = 25)
+            self.entry_c_B = self.Entry(self.frame2)
+            self.entry_c_B.text.place(x = 420, y = 27)
+            self.cross_entry.extend([self.entry_c_B.text, self.entry_c_B_lab])
+
+            self.entry_c_H_lab = tk.Label(self.frame2, text = 'H: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_c_H_lab.place(width = 25, height = 25, x = 470, y = 25)
+            self.entry_c_H = self.Entry(self.frame2)
+            self.entry_c_H.text.place(x = 490, y = 27)
+            self.cross_entry.extend([self.entry_c_H.text, self.entry_c_H_lab])
+
+            self.entry_c_b_lab = tk.Label(self.frame2, text = 'b: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_c_b_lab.place(width = 25, height = 25, x = 540, y = 25)
+            self.entry_c_b = self.Entry(self.frame2)
+            self.entry_c_b.text.place(x = 560, y = 27)
+            self.cross_entry.extend([self.entry_c_b.text, self.entry_c_b_lab])
+
+            self.entry_c_h_lab = tk.Label(self.frame2, text = 'h: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_c_h_lab.place(width = 25, height = 25, x = 610, y = 25)
+            self.entry_c_h = self.Entry(self.frame2)
+            self.entry_c_h.text.place(x = 630, y = 27)
+            self.cross_entry.extend([self.entry_c_h.text, self.entry_c_h_lab])
+
         if(c == "O"):
             #add O cross section picture
             img = Image.open('images/o.png').resize((60, 60), Image.ANTIALIAS)
@@ -368,6 +484,19 @@ class Window:
             self.o = ImageTk.PhotoImage(Image.open('images/o_crossection.png').resize((130, 130), Image.ANTIALIAS))
             self.o_canvas.create_image(65, 65,image = self.o)
             self.cross_canvas_list.append(self.o_canvas)
+
+            #add necessary fields of input
+            if len(self.cross_entry):
+                for i in self.cross_entry:
+                    print(i)
+                    i.destroy()
+                self.cross_entry.clear()
+                
+            self.entry_o_r_lab = tk.Label(self.frame2, text = 'r: ', bg = '#006665', fg = 'white', font=("Helvetica",9, 'bold'))
+            self.entry_o_r_lab.place(width = 25, height = 25, x = 500, y = 25)
+            self.entry_o_r = self.Entry(self.frame2)
+            self.entry_o_r.text.place(x = 520, y = 27)
+            self.cross_entry.extend([self.entry_o_r.text, self.entry_o_r_lab])
     
     # Crossection OptionMenu master function
     def master_crossection_function(self, choice):
@@ -466,6 +595,7 @@ class Window:
     def read_support_text(self):
         for i in self.support_list:
             print(i.cget('text'))
+    
 
 
     def get_arrow_length(self, wid):
@@ -528,6 +658,7 @@ class Window:
         ey = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
         if self.lenn <= int(self.beam_length_number.get()):
             lab.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=ex+27,y=ey,anchor='center')
+    
 
 
     def info(self):
