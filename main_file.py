@@ -106,11 +106,11 @@ class Window:
         self.simple_support_button = tk.Button(self.frame1, image = self.resized_simple_support_pic, bg = 'black', command = self.create_simple_support)
         self.simple_support_button.place(height = 40, width = 80, x=61, y=260)
 
-        #Fixed Support
-        self.fixed_support_pic = Image.open('images/fixed_support.png').resize((60,50), Image.ANTIALIAS)
-        self.resized_fixed_support_pic = ImageTk.PhotoImage(self.fixed_support_pic)
-        self.fixed_support_button = tk.Button(self.frame1, image = self.resized_fixed_support_pic, bg = 'black', command = self.create_fixed_support)
-        self.fixed_support_button.place(height = 40, width = 80, x=141, y=260)
+        # #Fixed Support
+        # self.fixed_support_pic = Image.open('images/fixed_support.png').resize((60,50), Image.ANTIALIAS)
+        # self.resized_fixed_support_pic = ImageTk.PhotoImage(self.fixed_support_pic)
+        # self.fixed_support_button = tk.Button(self.frame1, image = self.resized_fixed_support_pic, bg = 'black', command = self.create_fixed_support)
+        # self.fixed_support_button.place(height = 40, width = 80, x=141, y=260)
 
         #Crossection Drop Down
         self.varList = tk.StringVar(self.win)
@@ -123,19 +123,19 @@ class Window:
         self.beam_length_number = tk.StringVar()
         #Beam Length Label
         self.beam_length_label = tk.Label(self.win, width = 50, height = 50, text = "Beam Length : ", bg = '#006665',font=("Helvetica",9, 'bold'))
-        self.beam_length_label.place(height = 30, width = 142, x=20, y=490)
+        self.beam_length_label.place(height = 30, width = 142, x=20, y=540)
         #Enter length of beam
         self.beam_length = tk.Entry(self.win, text = self.beam_length_number)
-        self.beam_length.place(x = 160, y = 495)
+        self.beam_length.place(x = 160, y = 545)
 
         #Youngs modulus input
         self.e = tk.StringVar()
         #Youngs Modulus Label
         self.e_label = tk.Label(self.win, width = 50, height = 50, text = "Youngs Modulus : ", bg = '#006665',font=("Helvetica",9, 'bold'))
-        self.e_label.place(height = 30, width = 142, x=20, y= 519)
+        self.e_label.place(height = 30, width = 142, x=20, y= 569)
         #Entery for Youngs modulus
         self.e_val = tk.Entry(self.win, text = self.e)
-        self.e_val.place(x = 160, y = 523)
+        self.e_val.place(x = 160, y = 573)
 
 
         #Submit Button
@@ -166,7 +166,7 @@ class Window:
         self.bin_pic = Image.open('images/bin.png').resize((50, 50), Image.ANTIALIAS)
         self.resized_bin_pic = ImageTk.PhotoImage(self.bin_pic)
         self.bin_label= tk.Label(self.frame2, image = self.resized_bin_pic, bg = '#006665', borderwidth = 0)
-        self.bin_label.place( width = 50, height = 50, x=150, y = 16)
+        self.bin_label.place( width = 50, height = 50, x=150, y = 25)
 
         #Delete all loads
         self.delete_all_loads = ImageTk.PhotoImage(Image.open('images/delete_all_loads.png').resize((60, 60), Image.ANTIALIAS))
@@ -282,17 +282,6 @@ class Window:
     # Displays crossection picture  
     def display_crossection_picture(self, c):
         if(c == "Rectangular"):
-            #add Rectangle cross section picture on frame1
-            img = Image.open('images/r.png').resize((60, 60), Image.ANTIALIAS)
-            img = img
-            resized_image = ImageTk.PhotoImage(img)
-            self.win.resized_image = resized_image
-            print('width : ' + str(resized_image.width()), 'height : ' + str(resized_image.height()))
-            img_label = tk.Label(self.win, width = 60, height = 60)
-            img_label.configure(image = resized_image)
-            img_label.update()
-            print("hello")
-            img_label.place(x= 100, y=400)
             
             #add Rectangular cross section picture on frame 2
             self.rect_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
@@ -321,15 +310,7 @@ class Window:
 
             
         if(c == "I"):
-            #add I cross section picture
-            img = Image.open('images/i_beam.png').resize((60, 60), Image.ANTIALIAS)
-            img = img
-            resized_image = ImageTk.PhotoImage(img)
-            self.win.resized_image = resized_image
-            img_canvas = tk.Canvas(self.win, width = resized_image.width(), height = resized_image.height())
-            print('width : ' + str(resized_image.width()), 'height : ' + str(resized_image.height()))
-            img_canvas.place(x= 100, y=400)  
-            img_canvas.create_image(40, 30, image = resized_image, tag = "I")
+            
 
             #add I cross section picture on frame 2
             self.i_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
@@ -370,15 +351,7 @@ class Window:
             self.cross_entry.extend([self.entry_i_h.text, self.entry_i_h_lab])
         
         if(c == "T"):
-            #add T cross section picture
-            img = Image.open('images/t.png').resize((60, 60), Image.ANTIALIAS)
-            img = img
-            resized_image = ImageTk.PhotoImage(img)
-            self.win.resized_image = resized_image
-            img_canvas = tk.Canvas(self.win, width = resized_image.width(), height = resized_image.height())
-            print('width : ' + str(resized_image.width()), 'height : ' + str(resized_image.height()))
-            img_canvas.place(x= 100, y=400)  
-            img_canvas.create_image(40, 30, image = resized_image, tag = "T")
+            
 
             #add T cross section picture on frame 2
             self.t_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
@@ -419,16 +392,7 @@ class Window:
             self.cross_entry.extend([self.entry_t_h.text, self.entry_t_h_lab])
 
         if(c == "C"):
-            #add C cross section picture
-            img = Image.open('images/c.png').resize((60, 60), Image.ANTIALIAS)
-            img = img
-            resized_image = ImageTk.PhotoImage(img)
-            self.win.resized_image = resized_image
-            img_canvas = tk.Canvas(self.win, width = resized_image.width(), height = resized_image.height()+2)
-            print('width : ' + str(resized_image.width()), 'height : ' + str(resized_image.height()))
-            img_canvas.place(x= 100, y=400)  
-            img_canvas.create_image(40, 30, image = resized_image, tag = "C")
-
+            
             #add C cross section picture on frame 2
             self.c_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
             self.c_canvas.place(width = 130, height = 130, x = 500, y = 160)
@@ -468,16 +432,7 @@ class Window:
             self.cross_entry.extend([self.entry_c_h.text, self.entry_c_h_lab])
 
         if(c == "O"):
-            #add O cross section picture
-            img = Image.open('images/o.png').resize((60, 60), Image.ANTIALIAS)
-            img = img
-            resized_image = ImageTk.PhotoImage(img)
-            self.win.resized_image = resized_image
-            img_canvas = tk.Canvas(self.win, width = resized_image.width(), height = resized_image.height())
-            print('width : ' + str(resized_image.width()), 'height : ' + str(resized_image.height()))
-            img_canvas.place(x= 100, y=400)  
-            img_canvas.create_image(28, 32, image = resized_image, tag = "O")
-
+           
             #add C cross section picture on frame 2
             self.o_canvas = tk.Canvas(self.frame2, highlightthickness = 0)
             self.o_canvas.place(width = 130, height = 130, x = 500, y = 160)
@@ -585,11 +540,11 @@ class Window:
         # print(self.support_list[0].cget("Text"))
         self.simple_support_lab.bind('<B1-Motion>', self.support_master)
         return
-    def create_fixed_support(self):
-        self.fixed_support_lab = tk.Label(self.frame2, text = "fixed", image = self.resized_beam_fixed_support)
-        self.support_list.append(self.fixed_support_lab)
-        self.fixed_support_lab.place(height = 100, width = 30, x=10, y = 170)
-        self.fixed_support_lab.bind('<B1-Motion>', self.support_master)
+    # def create_fixed_support(self):
+    #     self.fixed_support_lab = tk.Label(self.frame2, text = "fixed", image = self.resized_beam_fixed_support)
+    #     self.support_list.append(self.fixed_support_lab)
+    #     self.fixed_support_lab.place(height = 100, width = 30, x=10, y = 170)
+    #     self.fixed_support_lab.bind('<B1-Motion>', self.support_master)
         return
     
     def read_support_text(self):
