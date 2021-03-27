@@ -33,37 +33,37 @@ class Window:
         self.arrow_down_pic = Image.open('images/arrow.png').resize((15, 15), Image.ANTIALIAS)
         self.resized_arrow_down_pic = ImageTk.PhotoImage(self.arrow_down_pic)
         self.arrow_down_button = tk.Button(self.win, text = "Point Force", image = self.resized_arrow_down_pic, bg = 'black', command = self.create_down_arrow)
-        self.arrow_down_button.place(height = 30, width = 50, x=15, y=50)
+        self.arrow_down_button.place(height = 30, width = 30, x=15, y=50)
 
         #Arrow up button
         self.arrow_up_pic = Image.open('images/arrow_up.png').resize((15,15), Image.ANTIALIAS)
         self.resized_arrow_up_pic = ImageTk.PhotoImage(self.arrow_up_pic)
         self.arrow_up_button = tk.Button(self.win, text = "Point Force", image = self.resized_arrow_up_pic, bg = 'black',command = self.create_up_arrow)
-        self.arrow_up_button.place(height = 30, width = 50, x=70, y=50)
+        self.arrow_up_button.place(height = 30, width = 30, x=45, y=50)
 
         #Anticlockwise Moment button
         self.moment_ac_pic = Image.open('images/moment_anticlockwise.png').resize((15, 15), Image.ANTIALIAS)
         self.resized_moment_ac_pic = ImageTk.PhotoImage(self.moment_ac_pic)
         self.moment_ac_button = tk.Button(self.win, image = self.resized_moment_ac_pic, bg = 'black',command = self.create_moment_ac)
-        self.moment_ac_button.place(height = 30, width = 50, x= 125, y=50)
+        self.moment_ac_button.place(height = 30, width = 30, x = 75, y=50)
 
         #Clockwise Moment button
         self.moment_c_pic = Image.open('images/moment_clockwise.png').resize((15,15), Image.ANTIALIAS)
         self.resized_moment_c_pic = ImageTk.PhotoImage(self.moment_c_pic)
         self.moment_c_button = tk.Button(self.win, image = self.resized_moment_c_pic, bg = 'black',command = self.create_moment_c)
-        self.moment_c_button.place(height = 30, width = 50, x= 180, y=50)
+        self.moment_c_button.place(height = 30, width = 30, x = 105, y=50)
 
         #Uniform Distributed Load button
-        self.uniform_pic = Image.open('images/uniform.png').resize((80,50), Image.ANTIALIAS)
+        self.uniform_pic = Image.open('images/uniform.png').resize((20,20), Image.ANTIALIAS)
         self.resized_uniform_pic = ImageTk.PhotoImage(self.uniform_pic)
         self.uniform_button = tk.Button(self.win, image = self.resized_uniform_pic, bg = 'black',command = self.create_uniform_load)
-        self.uniform_button.place(height = 40, width = 80, x=70, y=130)
+        self.uniform_button.place(height = 30, width = 30, x=135, y=50)
 
         #Nonuniformly Distributed Load button
-        self.nonuniform_pic = Image.open('images/nonuniform.png').resize((80,50), Image.ANTIALIAS)
+        self.nonuniform_pic = Image.open('images/nonuniform.png').resize((20,20), Image.ANTIALIAS)
         self.resized_nonuniform_pic = ImageTk.PhotoImage(self.nonuniform_pic)
         self.non_uniform_button = tk.Button(self.win, image = self.resized_nonuniform_pic, bg = 'black',command = self.create_nonuniform_load)
-        self.non_uniform_button.place(height = 40, width = 80, x=150, y=130)
+        self.non_uniform_button.place(height = 30, width = 30, x=165, y=50)
 
         #Creating uniform and nonuniformly distributed load
         self.g_uniform_pic = Image.open('images/green_uniform_distributed_load.png').resize((80,50), Image.ANTIALIAS)
@@ -78,16 +78,16 @@ class Window:
         self.resized_g_usd_nonuniform_pic = ImageTk.PhotoImage(self.g_usd_nonuniform_pic)
 
         # Upside Down Uniform Distributed Load button
-        self.usd_uniform_pic = Image.open('images/usd_uniform.png').resize((70,50), Image.ANTIALIAS)
+        self.usd_uniform_pic = Image.open('images/usd_uniform.png').resize((20,20), Image.ANTIALIAS)
         self.resized_usd_uniform_pic = ImageTk.PhotoImage(self.usd_uniform_pic)
         self.usd_uniform_button = tk.Button(self.win, image = self.resized_usd_uniform_pic, bg = 'black',command = self.create_usd_uniform_load)
-        self.usd_uniform_button.place(height = 50, width = 80, x=70, y=170)
+        self.usd_uniform_button.place(height = 30, width = 30, x=195, y=50)
 
         # Upside Down Nonuniformly Distributed Load button
-        self.usd_nonuniform_pic = Image.open('images/usd_nonuniform.png').resize((70,50), Image.ANTIALIAS)
+        self.usd_nonuniform_pic = Image.open('images/usd_nonuniform.png').resize((20,20), Image.ANTIALIAS)
         self.resized_usd_nonuniform_pic = ImageTk.PhotoImage(self.usd_nonuniform_pic)
         self.usd_non_uniform_button = tk.Button(self.win, image = self.resized_usd_nonuniform_pic, bg = 'black',command = self.create_usd_nonuniform_load)
-        self.usd_non_uniform_button.place(height = 50, width = 80, x=150, y=170)
+        self.usd_non_uniform_button.place(height = 30, width = 30, x=225, y=50)
 
        
         #Creating beam support pictures
@@ -96,13 +96,7 @@ class Window:
         self.beam_fixed_support = Image.open('images/beamfixedsupport.png').resize((30, 100), Image.ANTIALIAS)
         self.resized_beam_fixed_support = ImageTk.PhotoImage(self.beam_fixed_support)
 
-       
-        # #Fixed Support
-        # self.fixed_support_pic = Image.open('images/fixed_support.png').resize((60,50), Image.ANTIALIAS)
-        # self.resized_fixed_support_pic = ImageTk.PhotoImage(self.fixed_support_pic)
-        # self.fixed_support_button = tk.Button(self.frame1, image = self.resized_fixed_support_pic, bg = 'black', command = self.create_fixed_support)
-        # self.fixed_support_button.place(height = 40, width = 80, x=141, y=260)
-
+    
         #Crossection Drop Down
         self.varList = tk.StringVar(self.win)
         self.varList.set("Crossection")
@@ -127,6 +121,12 @@ class Window:
         self.resized_simple_support_pic = ImageTk.PhotoImage(self.simple_support_pic)
         self.simple_support_button = tk.Button(self.frame1, image = self.resized_simple_support_pic, bg = 'black', command = self.create_simple_support)
         self.simple_support_button.place(height = 30, width = 50, x=90, y=480)
+
+        #Roller Support
+        self.roller_support_pic = Image.open('images/roller_support.png').resize((20,20), Image.ANTIALIAS)
+        self.resized_roller_support_pic = ImageTk.PhotoImage(self.roller_support_pic)
+        self.roller_support_button = tk.Button(self.frame1, image = self.resized_roller_support_pic, bg = 'black', command = self.create_roller_support)
+        self.roller_support_button.place(height = 30, width = 50, x=140, y=480)
 
         #Beam Length
         self.beam_length_number = tk.StringVar()
@@ -168,7 +168,7 @@ class Window:
 
         #0m
         self.beam_0 = tk.Label(self.frame2, text = "0m", bg = '#006665')
-        self.beam_0.place(width = 20, height = 20, x=40, y = 250)
+        self.beam_0.place(width = 20, height = 20, x=40, y = 270)
 
 
         #Bin
@@ -213,7 +213,7 @@ class Window:
         lab_num = self.beam_length_number.get()
         self.beam_l = tk.Label(self.frame2, text = str(lab_num) + "m", bg = '#006665')
         width_ = 20+len(lab_num)+15
-        self.beam_l.place(width = width_, height = 20, x=410, y = 250)
+        self.beam_l.place(width = width_, height = 20, x=410, y = 270)
 
 
     #Widget delete
@@ -553,6 +553,15 @@ class Window:
         # print(self.support_list[0].cget("Text"))
         self.simple_support_lab.bind('<B1-Motion>', self.support_master)
         return
+
+    def create_roller_support(self):
+        self.roller_support_lab = tk.Label(self.frame2, text = "simple", image = self.resized_roller_support_pic, bg = "#006665")
+        self.support_list.append(self.roller_support_lab)
+        self.roller_support_lab.place(height = 25, width = 25, x=random.randrange(300,400), y=random.randrange(40,100))
+        # print(self.support_list[0].cget("Text"))
+        self.roller_support_lab.bind('<B1-Motion>', self.support_master)
+        return
+    
     def create_fixed_support_left(self):
         if(len(self.support_choice_list)):
             for i in self.support_choice_list:
