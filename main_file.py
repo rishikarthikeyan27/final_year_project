@@ -279,6 +279,9 @@ class Window:
     def support_master(self, e):
         self.delete_support(e)
         self.move_support(e)
+
+    # Radio button menu
+    
     
     # Displays crossection picture  
     def display_crossection_picture(self, c):
