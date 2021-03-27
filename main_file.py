@@ -30,28 +30,28 @@ class Window:
         self.load_selection_lab.place(height = 30, width = 140, x=80, y=5)
 
         #Arrow down button
-        self.arrow_down_pic = Image.open('images/arrow.png').resize((30, 30), Image.ANTIALIAS)
+        self.arrow_down_pic = Image.open('images/arrow.png').resize((15, 15), Image.ANTIALIAS)
         self.resized_arrow_down_pic = ImageTk.PhotoImage(self.arrow_down_pic)
         self.arrow_down_button = tk.Button(self.win, text = "Point Force", image = self.resized_arrow_down_pic, bg = 'black', command = self.create_down_arrow)
-        self.arrow_down_button.place(height = 40, width = 80, x=70, y=50)
+        self.arrow_down_button.place(height = 30, width = 50, x=15, y=50)
 
         #Arrow up button
-        self.arrow_up_pic = Image.open('images/arrow_up.png').resize((30,30), Image.ANTIALIAS)
+        self.arrow_up_pic = Image.open('images/arrow_up.png').resize((15,15), Image.ANTIALIAS)
         self.resized_arrow_up_pic = ImageTk.PhotoImage(self.arrow_up_pic)
         self.arrow_up_button = tk.Button(self.win, text = "Point Force", image = self.resized_arrow_up_pic, bg = 'black',command = self.create_up_arrow)
-        self.arrow_up_button.place(height = 40, width = 80, x=70, y=90)
+        self.arrow_up_button.place(height = 30, width = 50, x=70, y=50)
 
         #Anticlockwise Moment button
-        self.moment_ac_pic = Image.open('images/moment_anticlockwise.png').resize((30,30), Image.ANTIALIAS)
+        self.moment_ac_pic = Image.open('images/moment_anticlockwise.png').resize((15, 15), Image.ANTIALIAS)
         self.resized_moment_ac_pic = ImageTk.PhotoImage(self.moment_ac_pic)
         self.moment_ac_button = tk.Button(self.win, image = self.resized_moment_ac_pic, bg = 'black',command = self.create_moment_ac)
-        self.moment_ac_button.place(height = 40, width = 80, x=150, y=50)
+        self.moment_ac_button.place(height = 30, width = 50, x= 125, y=50)
 
         #Clockwise Moment button
-        self.moment_c_pic = Image.open('images/moment_clockwise.png').resize((30,30), Image.ANTIALIAS)
+        self.moment_c_pic = Image.open('images/moment_clockwise.png').resize((15,15), Image.ANTIALIAS)
         self.resized_moment_c_pic = ImageTk.PhotoImage(self.moment_c_pic)
         self.moment_c_button = tk.Button(self.win, image = self.resized_moment_c_pic, bg = 'black',command = self.create_moment_c)
-        self.moment_c_button.place(height = 40, width = 80, x=150, y=90)
+        self.moment_c_button.place(height = 30, width = 50, x= 180, y=50)
 
         #Uniform Distributed Load button
         self.uniform_pic = Image.open('images/uniform.png').resize((80,50), Image.ANTIALIAS)
@@ -96,16 +96,7 @@ class Window:
         self.beam_fixed_support = Image.open('images/beamfixedsupport.png').resize((30, 100), Image.ANTIALIAS)
         self.resized_beam_fixed_support = ImageTk.PhotoImage(self.beam_fixed_support)
 
-        #Support label
-        self.support_selection_lab = ttk.Label(self.frame1, text = "Please Select Supports", background = '#006665', font=("Helvetica",9, 'bold'))
-        self.support_selection_lab.place(height = 30, width = 140, x=75, y=230)
-
-        #Simple Support
-        self.simple_support_pic = Image.open('images/simple_support.png').resize((25,25), Image.ANTIALIAS)
-        self.resized_simple_support_pic = ImageTk.PhotoImage(self.simple_support_pic)
-        self.simple_support_button = tk.Button(self.frame1, image = self.resized_simple_support_pic, bg = 'black', command = self.create_simple_support)
-        self.simple_support_button.place(height = 40, width = 80, x=61, y=260)
-
+       
         # #Fixed Support
         # self.fixed_support_pic = Image.open('images/fixed_support.png').resize((60,50), Image.ANTIALIAS)
         # self.resized_fixed_support_pic = ImageTk.PhotoImage(self.fixed_support_pic)
@@ -117,7 +108,17 @@ class Window:
         self.varList.set("Crossection")
         self.choice_list = ["Cross section",'Rectangular', 'I', 'T', 'C', 'O']
         self.force_type = ttk.OptionMenu(self.win, self.varList, *self.choice_list, command = self.master_crossection_function)
-        self.force_type.place(height=40, width=120, x = 90, y=350)
+        self.force_type.place(height=40, width=120, x = 90, y=230)
+
+        #Support label
+        self.support_selection_lab = ttk.Label(self.frame1, text = "Please Select Supports", background = '#006665', font=("Helvetica",9, 'bold'))
+        self.support_selection_lab.place(height = 30, width = 140, x=70, y=450)
+
+        #Simple Support
+        self.simple_support_pic = Image.open('images/simple_support.png').resize((20,20), Image.ANTIALIAS)
+        self.resized_simple_support_pic = ImageTk.PhotoImage(self.simple_support_pic)
+        self.simple_support_button = tk.Button(self.frame1, image = self.resized_simple_support_pic, bg = 'black', command = self.create_simple_support)
+        self.simple_support_button.place(height = 30, width = 50, x=90, y=480)
 
         #Beam Length
         self.beam_length_number = tk.StringVar()
