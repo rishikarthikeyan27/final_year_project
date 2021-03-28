@@ -57,6 +57,10 @@ def stiffness_matrix(E,I, l):
 def calc_static_indeterminacy(no_of_reactions):
     return (no_of_reactions - 3)
 
+def return_q(d):
+    #d here is the distance between the line of consideration and neutral axis
+    pass
+
 
     
      
