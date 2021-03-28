@@ -734,8 +734,9 @@ class Window:
                     self.no_of_reactions += 2 
                 elif (i.cget('text') == 'roller'):
                     self.no_of_reactions +=1
+        self.static_indeterminacy = cf.calc_static_indeterminacy(self.no_of_reactions)
         print("Total no.of reactions : " + str(self.no_of_reactions))
-        print("Static indeterminacy : " + str(cf.calc_static_indeterminacy(self.no_of_reactions)))
+        print("Static indeterminacy : " + str(self.static_indeterminacy))
 
     
 
