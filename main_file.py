@@ -217,6 +217,14 @@ class Window:
         self.beam_l = tk.Label(self.frame2, text = str(lab_num) + "m", bg = '#006665')
         width_ = 20+len(lab_num)+15
         self.beam_l.place(width = width_, height = 20, x=410, y = 270)
+        x = 0
+        if len(self.support_list)>=1:
+            for i in self.support_list:
+                if (i.cget('text') == 'fixed'):
+                    x+=1
+        else:
+            x=0
+        print('No.of fixed supports : ' + str(x))
 
 
     #Widget delete
@@ -575,6 +583,10 @@ class Window:
         return
     
     def create_fixed_support_left(self):
+        if(len(self.support_list)):
+            for i in self.support_list:
+                if (i.cget('text') == 'fixed'):
+                    self.support_list.remove(i)
         if(len(self.support_choice_list)):
             for i in self.support_choice_list:
                 i.destroy()
@@ -586,6 +598,10 @@ class Window:
         self.support_choice_list.append(self.fixed_support_lab_left)
         return
     def create_fixed_support_right(self):
+        if(len(self.support_list)):
+            for i in self.support_list:
+                if (i.cget('text') == 'fixed'):
+                    self.support_list.remove(i)
         if(len(self.support_choice_list)):
             for i in self.support_choice_list:
                 i.destroy()
@@ -596,6 +612,10 @@ class Window:
         self.support_choice_list.append(self.fixed_support_lab_right)
         return
     def create_fixed_support_end(self):
+        if(len(self.support_list)):
+            for i in self.support_list:
+                if (i.cget('text') == 'fixed'):
+                    self.support_list.remove(i)
         if(len(self.support_choice_list)):
             for i in self.support_choice_list:
                 i.destroy()
@@ -614,6 +634,10 @@ class Window:
         return
 
     def create_no_fixed_support(self):
+        if(len(self.support_list)):
+            for i in self.support_list:
+                if (i.cget('text') == 'fixed'):
+                    self.support_list.remove(i)
         if(len(self.support_choice_list)):
             for i in self.support_choice_list:
                 i.destroy()
@@ -696,6 +720,12 @@ class Window:
         ey = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
         if self.lenn <= int(self.beam_length_number.get()):
             lab.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=ex+27,y=ey,anchor='center')
+    
+    # def calc_reactions(self):
+    #     self.no_of_reactions = 0
+    #     for i in self.support_list:
+    #         if i.cget('text' == 'fixed'):
+
     
 
 
