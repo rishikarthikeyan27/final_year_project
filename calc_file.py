@@ -108,11 +108,11 @@ def calc_static_indeterminacy(no_of_reactions):
     return (no_of_reactions - 3)
 
 def max_shear_stress(x):
-    print('The maximum shear stress is : ', x)
+    return(x)
 
 def calc_rbeam_shear_stress(shear_force, B, H):
     V = shear_force
-    i = 80000000
+    i = calc_rbeam_i(B, H)
     print("i : ", i)
     centroid = calc_rbeam_centroid(B, H)
     print("centroid : ", centroid)
@@ -144,7 +144,75 @@ def calc_rbeam_shear_stress(shear_force, B, H):
     plt.ylabel("y axis caption") 
     plt.plot(x, y) 
     plt.show()
-    max_shear_stress(max(huge_list))
+    print('The maximum shear stress is : ',max_shear_stress(max(huge_list)))
     return
 
-calc_rbeam_shear_stress(8000, 120, 200)
+def calc_ibeam_shear_stress(shear_force, B, h, H, b):
+    V = shear_force
+    i = calc_ibeam_i(B, h, H, b)
+    print("i", i)
+    centroid = calc_ibeam_centroid(B, h, H, b)
+    y=(H/2)+h
+    huge_list = []
+    x = True
+    D = (H)+(2*h)
+    d = H
+    while x:
+        if ((y<=((H/2)+h)) and (y>H/2)):
+            breadth = h-(y-(H/2))
+            Area = B*breadth
+            y_dash = (breadth/2)+y
+            Q = Area * y_dash
+            tou = (V/(i*B))*(Q)
+            tou = tou*1000
+            huge_list.append(tou)
+            y-=1
+
+        elif ((y <= H/2) and (y >= 0)):
+            tou = (V/(i*b))*(((B*((D**2)-(d**2)))/(8))+((b/2)*(((d**2)/4) - (y**2))))
+            tou = tou*1000
+            huge_list.append(tou)
+            y-=1
+        
+        elif ((y < 0) and (y >= (-H/2))):
+            tou = (V/(i*b))*(((B*((D**2)-(d**2)))/(8))+((b/2)*(((d**2)/4) - ((-y)**2))))
+            tou = tou*1000
+            huge_list.append(tou)
+            y-=1
+
+        elif ((y>=(-((H/2)+h))) and (y<(-H/2))):
+
+            breadth = h-((-y)-(H/2))
+            Area = B*breadth
+            y_dash = (breadth/2)+(-y)
+            Q = Area * y_dash
+            tou = (V/(i*B))*(Q)
+            tou = tou*1000
+            huge_list.append(tou)
+            y-=1
+
+        else:
+            print(y)
+            x = False
+    y = []
+    start = int((H/2)+h)
+    finish = -(int((H/2)+h))-1
+    for i in range(start, finish, -1):
+        y.append(i)
+    y = np.array(y)
+    x = np.array(huge_list)
+    print("X : ", len(x))
+    print("Y : ", len(y))
+
+    plt.title("Matplotlib demo") 
+    plt.xlabel("Shear Stress in MPa") 
+    plt.ylabel("Beam height in mm") 
+
+    plt.plot(x, y) 
+    plt.show()
+    print('The maximum shear stress is : ',max_shear_stress(max(huge_list)))
+    
+    return
+
+calc_ibeam_shear_stress(50, 150, 25, 200, 20)
+
