@@ -11,6 +11,7 @@ def calc_tbeam_centroid(B,h,H, b):
     centroid_numerator = ((H+(h/2))*(B*h))+((H/2)*(b*H))
     centroid_denominator = ((B*h)+(b*H))
     centroid = centroid_numerator/centroid_denominator
+    return centroid
 
 def calc_ibeam_centroid(B, h, H, b):
     A1 = B*h 
@@ -282,6 +283,78 @@ def calc_cbeam_shear_stress(shear_force, B, h, H, b):
     
     return
 
-# calc_cbeam_shear_stress(55.8, 120, 10, 80, 10)
+def calc_tbeam_shear_stress(shear_force, B, h, H, b):
+    V = shear_force
+    i = calc_tbeam_i(B, h, H, b)
+    i_rec = calc_rbeam_i(B, h)
+    print("i", i)
+    centroid = calc_tbeam_centroid(B, h, H, b)
+    y = H+h-centroid
+    huge_list = []
+    x = True
+    print("y",y)
+    while x:
+        print("While true")
+
+        if (y>(H-centroid)):
+            print("1st if")
+            print("y= ", y)
+            print("H-c=", H-centroid)
+            breadth = H+h-centroid-y
+            A = B*breadth
+            y_dash = (breadth/2)+y
+            Q = A*y_dash
+            tou = (V/(i*B))*(Q)
+            tou = tou*1000
+            huge_list.append(tou)
+            y-=1
+            print(y)
+
+        elif (y<=(H-centroid)) and y>0:
+            print("2nd if")
+            print("y= ", y)
+            A1 = B*h 
+            y1 = H-centroid+(h/2)
+            A2 = ((H-centroid)-y)*b 
+            y2 = y+(((H-centroid)-y)/2)
+            Q = (A1*y1)+(A2*y2)
+            tou = (V/(i*b))*Q
+            tou = tou*1000
+            huge_list.append(tou)
+            y-=1
+            print(y)
+        elif(y<=0) and y >= (-centroid) :
+            print("3rd if")
+            breadth = centroid+y
+            Area = breadth*b 
+            y_dash = (breadth/2)-y
+            Q = Area*y_dash
+            tou = (V/(i*b))*Q
+            tou = tou*1000
+            huge_list.append(tou)
+            y-=1
+            print(y)
+        else:
+            x = False
+    y = []
+    start = H+h
+    finish = -1
+    for i in range(start, finish, -1):
+        y.append(i)
+    y = np.array(y)
+    x = np.array(huge_list)
+    print("X : ", len(x))
+    print("Y : ", len(y))
+
+    plt.title("Matplotlib demo") 
+    plt.xlabel("Shear Stress in MPa") 
+    plt.ylabel("Beam height in mm") 
+
+    plt.plot(x, y) 
+    plt.show()
+    print('The maximum shear stress is : ',max_shear_stress(max(huge_list)))
+    
+    return
 
 
+calc_tbeam_shear_stress(200000, 125, 25, 175, 25)
