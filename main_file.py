@@ -22,9 +22,6 @@ class Window:
         self.frame3 = tk.Frame(master=self.win, width=680, height=315, bg="#006665")
         self.frame3.pack(fill=tk.Y, padx=5, pady=15,side=tk.BOTTOM, expand=False)
 
-        # self.submit_button = tk.Button(self.frame3,
-        #                         text="Read Label Text", command = self.length_in_meters)
-        # self.submit_button.place(width = 70, height = 50, x = 150, y= 150)
 
         #Load label
         self.load_selection_lab = ttk.Label(self.frame1, text = "Please Select Loads", background = '#006665', font=("Helvetica",9, 'bold'))
@@ -146,9 +143,11 @@ class Window:
         self.e_val = tk.Entry(self.win, text = self.e)
         self.e_val.place(x = 160, y = 80)
 
+        # Length Label List
+        self.len_lab_list = []
 
         #Submit Button
-        self.submit = tk.Button(self.win, text = "Submit", command = self.master_submit)
+        self.submit = tk.Button(self.win, text = "Submit", command = lambda listt = self.len_lab_list: self.master_submit(listt))
         self.submit.place(height = 30, width = 140, x=80, y=350)
 
         #Create the beam picture
@@ -215,6 +214,9 @@ class Window:
         #Dimensions Done button list
         self.done_button_list = []
 
+        #final load list
+        self.final_load_list = []
+
         #mainloop
         self.win.mainloop()
 
@@ -249,12 +251,18 @@ class Window:
             j.destroy()
         self.input_list.clear()
         print(self.arrow_list)
+        for k in self.len_lab_list:
+            k.destroy()
+        self.len_lab_list.clear()
+        
     
     def del_all_supports(self):
         for i in self.support_list:
             i.destroy()
         self.support_list.clear()
-        print(self.arrow_list)
+    
+        
+
 
     #Move input along with arrows (up)
     def move_input_up(self, e,txt):
@@ -545,10 +553,11 @@ class Window:
             self.arrow_len = self.len_lab(self.frame2)
             self.arrow_up_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text, lab = self.arrow_len.arrow_rel_len_lab: self.widget_master_down(event, txt, lab))
             self.input_list.append(self.entry.text)
+            self.len_lab_list.append(self.arrow_len.arrow_rel_len_lab)
+            print(self.len_lab_list)
         else:
             self.alert_lab.place(width = 200, height = 30, x = 30, y = 10)
             self.alert_lab.destroy()
-
         return
     def create_down_arrow(self):
         x = self.beam_length.get()
@@ -561,6 +570,8 @@ class Window:
         self.arrow_len = self.len_lab(self.frame2)
         self.arrow_down_lab.bind('<B1-Motion>', lambda event, txt = self.entry.text, lab = self.arrow_len.arrow_rel_len_lab: self.widget_master_up(event, txt , lab))
         self.input_list.append(self.entry.text)
+        self.len_lab_list.append(self.arrow_len.arrow_rel_len_lab)
+        print(self.len_lab_list)
         return
     def create_moment_ac(self):
         self.moment_ac_lab = tk.Label(self.frame2,image = self.resized_moment_ac_pic, bg = '#006665', text = "moment_ac_arrow")
@@ -761,6 +772,7 @@ class Window:
         ey = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
         if self.lenn <= int(self.beam_length_number.get()):
             lab.place(height = e.widget.winfo_height(), width = e.widget.winfo_width(), x=ex+7,y=ey-55,anchor='center')
+        return self.lenn
 
     def add_dist_lab_down(self, e, lab):
         
@@ -789,17 +801,8 @@ class Window:
         print("Total no.of reactions : " + str(self.no_of_reactions))
         print("Static indeterminacy : " + str(self.static_indeterminacy))
     
-    def master_submit(self):
-        self.add_beam_length_label()
-
-        # #generating dictionary
-        # # The dictionary will include the arrow position relative to the beam as the key
-        # # and it will
-
-        # for i in self.input_list:
-        #     print(i.get(1.0, "end-1c"))
+    
         
-
     def add_manual_arrow_location(self):
         pass
 
@@ -830,7 +833,21 @@ class Window:
         
         self.dimensions_dict = {"r" : self.entry_o_r.text.get(1.0, "end-1c")}
         return self.dimensions_dict
+    
+    def get_arrow_final_length(self, lis):
+        print(lis)
           
+    def master_submit(self, lis):
+        self.add_beam_length_label()
+        self.get_arrow_final_length(lis)
+
+        # #generating dictionary
+        # # The dictionary will include the arrow position relative to the beam as the key
+        # # and it will
+
+        # for i in self.input_list:
+        #     print(i.get(1.0, "end-1c"))
+    
     
     
     
