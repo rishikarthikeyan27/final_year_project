@@ -860,6 +860,7 @@ class Window:
         
         self.dimensions_dict = {"r" : self.entry_o_r.text.get(1.0, "end-1c")}
         return self.dimensions_dict
+
     
     def get_arrow_final_length(self, lis):
         print(lis)
@@ -871,26 +872,34 @@ class Window:
         self.get_arrow_final_length(lis)
         print("Arrow details : ")
 
+        loads_list = []
+        supports_list = []
+
         for i in range(0, len(self.grand_load_list)):
+            load_info_dict = {}
             for j in range(0, len(self.grand_load_list[i])):
                 if j == 0:
-                    print(self.grand_load_list[i][j].cget('text'))
+                    load_info_dict["load_type"] = self.grand_load_list[i][j].cget('text')
                 elif j == 1:
-                    print(self.grand_load_list[i][j].get(1.0, "end-1c"))
+                    load_info_dict["load_magnitude"] = self.grand_load_list[i][j].get(1.0, "end-1c")
                 elif j == 2:
-                    print(self.grand_load_list[i][j].cget('text'))
+                    load_info_dict["load_length"] = self.grand_load_list[i][j].cget('text')
+            loads_list.append(load_info_dict)
+        
         
         for k in range(0, len(self.grand_support_list)):
+            supports_info_dict = {}
             for l in range(0, len(self.grand_support_list[k])):
                 if l == 0:
-                    print(self.grand_support_list[k][l].cget('text'))
+                    supports_info_dict["support_type"] = self.grand_support_list[k][l].cget('text')
                 elif l == 1:
-                    print(self.grand_support_list[k][l].cget('text'))
+                    supports_info_dict["support_length"]=self.grand_support_list[k][l].cget('text')
+            supports_list.append(supports_info_dict)
+        
+        return
+        #cf.get_results(loads_list, supports_list, self.dimensions_dict)
                     
-            
-    
-    
-    
+
     #Entry class
     class Entry:
         def __init__(self, win):
