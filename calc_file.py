@@ -397,4 +397,4 @@ def calc_obeam_shear_stress(shear_force, r):
     
     return
 
-calc_obeam_shear_stress(58, 1000)
+

@@ -14,6 +14,8 @@ class Window:
         self.win = tk.Tk()
         self.win.geometry('1000x650')
         self.win.configure(bg = 'black')
+
+        self.win.wm_attributes('-transparentcolor', 'red')
         #Create Frames
         self.frame1 = tk.Frame(master=self.win, width=280, height=630, bg='#006665')
         self.frame1.pack(fill=tk.BOTH, padx=10, pady=15,side=tk.LEFT, expand=False)
@@ -220,6 +222,9 @@ class Window:
         #grand load list
         self.grand_load_list = []
 
+        #grand support list
+        self.grand_support_list = []
+
         #mainloop
         self.win.mainloop()
 
@@ -315,9 +320,10 @@ class Window:
         self.move_input_down(e, inp)
         self.add_dist_lab_down(e,lab)
     
-    def support_master(self, e):
+    def support_master(self, e, lab):
         self.delete_support(e)
         self.move_support(e)
+        self.add_dist_lab_down(e,lab)
 
 
     
@@ -648,8 +654,9 @@ class Window:
     def create_simple_support(self):
         self.simple_support_lab = tk.Label(self.frame2, text = 'pinned', image = self.resized_beam_simple_support)
         self.simple_support_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.arrow_len = self.len_lab(self.frame2)
         # print(self.support_list[0].cget("Text"))
-        self.simple_support_lab.bind('<B1-Motion>', self.support_master)
+        self.simple_support_lab.bind('<B1-Motion>', lambda event , lab = self.arrow_len.arrow_rel_len_lab : self.support_master(event, lab))
         self.support_list.append(self.simple_support_lab)
         return
 
