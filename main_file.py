@@ -663,8 +663,9 @@ class Window:
     def create_roller_support(self):
         self.roller_support_lab = tk.Label(self.frame2, text = 'roller', image = self.resized_roller_support_pic, bg = "#006665")
         self.roller_support_lab.place(height = 25, width = 25, x=random.randrange(300,400), y=random.randrange(40,100))
+        self.arrow_len = self.len_lab(self.frame2)
         # print(self.support_list[0].cget("Text"))
-        self.roller_support_lab.bind('<B1-Motion>', self.support_master)
+        self.roller_support_lab.bind('<B1-Motion>', lambda event , lab = self.arrow_len.arrow_rel_len_lab : self.support_master(event, lab))
         self.support_list.append(self.roller_support_lab)
         return
     
