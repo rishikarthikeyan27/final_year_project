@@ -898,7 +898,8 @@ class Window:
                     supports_info_dict["support_length"]=self.grand_support_list[k][l].cget('text')
             supports_list.append(supports_info_dict)
         
-        return
+        print('Loads  List : ', loads_list)
+        print('Supports List : ', supports_list)
         #cf.get_results(loads_list, supports_list, self.dimensions_dict, self.static_indeterminacy, self.support_type_name)
                     
 

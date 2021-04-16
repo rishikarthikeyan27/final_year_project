@@ -400,15 +400,39 @@ def calc_obeam_shear_stress(shear_force, r):
 # helps interpret the whole front end
 
 def get_results(loads_list, supports_list, dimensions_dict, static_indeterminacy, support_type_name):
-    
+
     if static_indeterminacy <= 0:
         print("Statically Determinate")
         if support_type_name == "Fixed Right": 
             #How to deal with this when it is statically determinate
-            pass
+            all_loads = []
+            up_arrow_sum = 0
+            down_arrow_sum = 0
+            for load_dict in loads_list:
+                if load_dict['load_type'] == "down_arrow":
+                    down_arrow_sum += load_dict['load_magnitude']
+                    all_loads.append(load_dict['load_magnitude'])
+                elif load_dict['load_type'] == "up_arrow":
+                    up_arrow_sum += load_dict['load_magnitude']
+                    all_loads.append(load_dict['load_magnitude'])
+            Ra = up_arrow_sum - down_arrow_sum
+            all_loads.append(Ra)
+            max_shear_force = max(all_loads)
         elif support_type_name == "Fixed Left":
             #How to deal with this when it is statically determinate
-            pass
+            all_loads = []
+            up_arrow_sum = 0
+            down_arrow_sum = 0
+            for load_dict in loads_list:
+                if load_dict['load_type'] == "down_arrow":
+                    down_arrow_sum += load_dict['load_magnitude']
+                    all_loads.append(load_dict['load_magnitude'])
+                elif load_dict['load_type'] == "up_arrow":
+                    up_arrow_sum += load_dict['load_magnitude']
+                    all_loads.append(load_dict['load_magnitude'])
+            Ra = up_arrow_sum - down_arrow_sum
+            all_loads.append(Ra)
+            max_shear_force = max(all_loads) 
         elif support_type_name == "No Fixed Support":
             #how to deal with this when it is statically determinate
             pass
