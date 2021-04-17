@@ -877,13 +877,14 @@ class Window:
 
         for i in range(0, len(self.grand_load_list)):
             load_info_dict = {}
+            load_info_dict["load"] = str(i+1)
             for j in range(0, len(self.grand_load_list[i])):
                 if j == 0:
                     load_info_dict["load_type"] = self.grand_load_list[i][j].cget('text')
                 elif j == 1:
-                    load_info_dict["load_magnitude"] = self.grand_load_list[i][j].get(1.0, "end-1c")
+                    load_info_dict["load_magnitude"] = (self.grand_load_list[i][j].get(1.0, "end-1c"))+ " kN"
                 elif j == 2:
-                    load_info_dict["load_length"] = self.grand_load_list[i][j].cget('text')
+                    load_info_dict["load_length"] = (self.grand_load_list[i][j].cget('text')) + " m" 
             loads_list.append(load_info_dict)
         
         
@@ -894,7 +895,7 @@ class Window:
                 if l == 0:
                     supports_info_dict["support_type"] = self.grand_support_list[k][l].cget('text')
                 elif l == 1:
-                    supports_info_dict["support_length"]=self.grand_support_list[k][l].cget('text')
+                    supports_info_dict["support_length"]= (self.grand_support_list[k][l].cget('text')) + " m"
             supports_list.append(supports_info_dict)
         
         print('Loads  List : ', loads_list)
