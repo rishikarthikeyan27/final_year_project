@@ -15,7 +15,6 @@ class Window:
         self.win.geometry('1000x650')
         self.win.configure(bg = 'black')
 
-        self.win.wm_attributes('-transparentcolor', 'red')
         #Create Frames
         self.frame1 = tk.Frame(master=self.win, width=280, height=630, bg='#006665')
         self.frame1.pack(fill=tk.BOTH, padx=10, pady=15,side=tk.LEFT, expand=False)
@@ -189,6 +188,16 @@ class Window:
         self.das_button.place(width = 60, height = 60, x = 70, y=15)
 
         self.alert_lab = tk.Label(self.frame1, text= "Please enter beam length first")
+
+        self.graph_canvas = tk.Canvas(self.frame3, bg = '#006665',highlightthickness=0, highlightbackground="#006665")
+        self.graph_canvas.place(width = 440, height = 250, x = 40, y=10)
+
+        self.graph_canvas.create_line(1,125, 400, 125, fill = "black")
+        self.graph_canvas.create_line(1,1, 1, 250, fill = "black")
+
+
+
+
 
 
         

@@ -1,7 +1,0 @@
-
-We are going to remove to add multiple supports feature from this project
-Finite Element Method
-
-1) Discretition
-2) Stiffness Matrix for each elements
-3) 

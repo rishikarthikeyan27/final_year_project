@@ -2,6 +2,8 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+from sympy.physics.continuum_mechanics.beam import Beam
+from sympy import symbols
 
 def calc_rbeam_centroid(B, H):
     centroid = H/2
