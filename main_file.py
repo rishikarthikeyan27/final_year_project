@@ -189,18 +189,12 @@ class Window:
 
         self.alert_lab = tk.Label(self.frame1, text= "Please enter beam length first")
 
+        #Graph init
         self.graph_canvas = tk.Canvas(self.frame3, bg = '#006665',highlightthickness=0, highlightbackground="#006665")
         self.graph_canvas.place(width = 440, height = 250, x = 40, y=10)
-
         self.graph_canvas.create_line(1,125, 400, 125, fill = "black")
         self.graph_canvas.create_line(1,1, 1, 250, fill = "black")
 
-
-
-
-
-
-        
         #List of all the arrows that have been added
         self.arrow_list = []
 

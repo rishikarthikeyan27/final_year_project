@@ -26,8 +26,30 @@ def graph():
     # b.bc_deflection = [(0, 0), (8, 0)]
     b.bc_deflection = [(0, 0), (1,0), (2,0), (3,0)]
     b.solve_for_reaction_loads(R1, R2, R3, R4)
-    fig = b.shear_force()
-    print(fig)
+    shear_force = b.shear_force()
+    shear_force = str(shear_force)
+    give_shear_force_list(shear_force)
+
+def give_shear_force_list(shear_force):
+
+    nosp_shear_force = shear_force.translate({ord(' '): None})
+    shear_force_list = nosp_shear_force.split(")")
+    shear_force_list.remove(shear_force_list[-1])
+    for i in range(0, len(shear_force_list)):
+        shear_force_list[i] = shear_force_list[i]+")"
+    render_sf_list(shear_force_list)
+
+def render_sf_list(sf_list):
+    for i in sf_list:
+        if i[0] != '-':
+            #Then it means it is +
+            pass
+        elif i[0] == "-":
+            #Then it means it is -
+            pass
+
+
+
     
     # canvas = FigureCanvasTkAgg(fig, root)
     # canvas.draw()
