@@ -1185,12 +1185,12 @@ class Beam:
         else:
             length = self.length
         
-        return(plot(shear_force.subs(subs), (self.variable, 0, length),show = True ,title='Shear Force',
-                xlabel=r'$\mathrm{x}$', ylabel=r'$\mathrm{V}$', line_color='g'))
+        # return(plot(shear_force.subs(subs), (self.variable, 0, length),show = True ,title='Shear Force',
+        #         xlabel=r'$\mathrm{x}$', ylabel=r'$\mathrm{V}$', line_color='g'))
         
         
-        # return plot(shear_force.subs(subs), (self.variable, 0, length), title='Shear Force',
-        #         xlabel=r'$\mathrm{x}$', ylabel=r'$\mathrm{V}$', line_color='g')
+        return plot(shear_force.subs(subs), (self.variable, 0, length), title='Shear Force',
+                xlabel=r'$\mathrm{x}$', ylabel=r'$\mathrm{V}$', line_color='g')
 
     def plot_bending_moment(self, subs=None):
         """
