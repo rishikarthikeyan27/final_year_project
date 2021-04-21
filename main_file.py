@@ -26,69 +26,45 @@ class Window:
 
         #Load label
         self.load_selection_lab = ttk.Label(self.frame1, text = "Please Select Loads", background = '#006665', font=("Helvetica",9, 'bold'))
-        self.load_selection_lab.place(height = 30, width = 140, x=80, y=105)
+        self.load_selection_lab.place(height = 30, width = 140, x=77, y=105)
 
         #Arrow down button
         self.arrow_down_pic = Image.open('images/arrow.png').resize((15, 15), Image.ANTIALIAS)
         self.resized_arrow_down_pic = ImageTk.PhotoImage(self.arrow_down_pic)
         self.arrow_down_button = tk.Button(self.win, text = "Point Force", image = self.resized_arrow_down_pic, bg = 'black', command = self.create_down_arrow)
-        self.arrow_down_button.place(height = 30, width = 30, x=27, y=150)
+        self.arrow_down_button.place(height = 30, width = 60, x=47, y=150)
 
         #Arrow up button
         self.arrow_up_pic = Image.open('images/arrow_up.png').resize((15,15), Image.ANTIALIAS)
         self.resized_arrow_up_pic = ImageTk.PhotoImage(self.arrow_up_pic)
         self.arrow_up_button = tk.Button(self.win, text = "Point Force", image = self.resized_arrow_up_pic, bg = 'black',command = self.create_up_arrow)
-        self.arrow_up_button.place(height = 30, width = 30, x=57, y=150)
+        self.arrow_up_button.place(height = 30, width = 60, x=107, y=150)
 
         #Anticlockwise Moment button
         self.moment_ac_pic = Image.open('images/moment_anticlockwise.png').resize((15, 15), Image.ANTIALIAS)
         self.resized_moment_ac_pic = ImageTk.PhotoImage(self.moment_ac_pic)
         self.moment_ac_button = tk.Button(self.win, image = self.resized_moment_ac_pic, bg = 'black',command = self.create_moment_ac)
-        self.moment_ac_button.place(height = 30, width = 30, x = 87, y=150)
+        self.moment_ac_button.place(height = 30, width = 60, x = 167, y=150)
 
         #Clockwise Moment button
         self.moment_c_pic = Image.open('images/moment_clockwise.png').resize((15,15), Image.ANTIALIAS)
         self.resized_moment_c_pic = ImageTk.PhotoImage(self.moment_c_pic)
         self.moment_c_button = tk.Button(self.win, image = self.resized_moment_c_pic, bg = 'black',command = self.create_moment_c)
-        self.moment_c_button.place(height = 30, width = 30, x = 117, y=150)
+        self.moment_c_button.place(height = 30, width = 60, x = 77, y=180)
 
         #Uniform Distributed Load button
         self.uniform_pic = Image.open('images/uniform.png').resize((20,20), Image.ANTIALIAS)
         self.resized_uniform_pic = ImageTk.PhotoImage(self.uniform_pic)
         self.uniform_button = tk.Button(self.win, image = self.resized_uniform_pic, bg = 'black',command = self.create_uniform_load)
-        self.uniform_button.place(height = 30, width = 30, x=147, y=150)
+        self.uniform_button.place(height = 30, width = 60, x=137, y=180)
 
-        #Nonuniformly Distributed Load button
-        self.nonuniform_pic = Image.open('images/nonuniform.png').resize((20,20), Image.ANTIALIAS)
-        self.resized_nonuniform_pic = ImageTk.PhotoImage(self.nonuniform_pic)
-        self.non_uniform_button = tk.Button(self.win, image = self.resized_nonuniform_pic, bg = 'black',command = self.create_nonuniform_load)
-        self.non_uniform_button.place(height = 30, width = 30, x=177, y=150)
+       
 
         #Creating uniform and nonuniformly distributed load
         self.g_uniform_pic = Image.open('images/green_uniform_distributed_load.png').resize((80,50), Image.ANTIALIAS)
         self.resized_g_uniform_pic = ImageTk.PhotoImage(self.g_uniform_pic)
-        self.g_nonuniform_pic = Image.open('images/green_nonuniform_distributed_load.png').resize((80,50), Image.ANTIALIAS)
-        self.resized_g_nonuniform_pic = ImageTk.PhotoImage(self.g_nonuniform_pic)
-
-        #Creating upside down uniform and upside down nonuniformly distributed load
-        self.g_usd_uniform_pic = Image.open('images/green_usd_uniform_distributed_load.png').resize((80,50), Image.ANTIALIAS)
-        self.resized_g_usd_uniform_pic = ImageTk.PhotoImage(self.g_usd_uniform_pic)
-        self.g_usd_nonuniform_pic = Image.open('images/green_usd_nonuniform_distributed_load.png').resize((80,50), Image.ANTIALIAS)
-        self.resized_g_usd_nonuniform_pic = ImageTk.PhotoImage(self.g_usd_nonuniform_pic)
-
-        # Upside Down Uniform Distributed Load button
-        self.usd_uniform_pic = Image.open('images/usd_uniform.png').resize((20,20), Image.ANTIALIAS)
-        self.resized_usd_uniform_pic = ImageTk.PhotoImage(self.usd_uniform_pic)
-        self.usd_uniform_button = tk.Button(self.win, image = self.resized_usd_uniform_pic, bg = 'black',command = self.create_usd_uniform_load)
-        self.usd_uniform_button.place(height = 30, width = 30, x=207, y=150)
-
-        # Upside Down Nonuniformly Distributed Load button
-        self.usd_nonuniform_pic = Image.open('images/usd_nonuniform.png').resize((20,20), Image.ANTIALIAS)
-        self.resized_usd_nonuniform_pic = ImageTk.PhotoImage(self.usd_nonuniform_pic)
-        self.usd_non_uniform_button = tk.Button(self.win, image = self.resized_usd_nonuniform_pic, bg = 'black',command = self.create_usd_nonuniform_load)
-        self.usd_non_uniform_button.place(height = 30, width = 30, x=237, y=150)
-
-       
+        
+        
         #Creating beam support pictures
         self.beam_simple_support = Image.open('images/beamsimplesupport.png').resize((40, 30), Image.ANTIALIAS)
         self.resized_beam_simple_support = ImageTk.PhotoImage(self.beam_simple_support)
@@ -101,36 +77,36 @@ class Window:
         self.varList.set("Crossection")
         self.choice_list = ["Cross section",'Rectangular', 'I', 'T', 'C', 'O']
         self.force_type = ttk.OptionMenu(self.win, self.varList, *self.choice_list, command = self.master_crossection_function)
-        self.force_type.place(height=40, width=120, x = 30, y=200)
+        self.force_type.place(height=40, width=120, x = 30, y=250)
 
         # Support Drop Down
         self.varsupport = tk.StringVar(self.win)
         self.varsupport.set("Support")
         self.support_list = ["Support", "Fixed Left",'Fixed Right', 'Fixed Ended', 'No Fixed Support']
         self.support_type = ttk.OptionMenu(self.win, self.varsupport, *self.support_list, command = self.master_support)
-        self.support_type.place(height=40, width=120, x = 150, y=200)
+        self.support_type.place(height=40, width=120, x = 150, y=250)
 
         #Support label
         self.support_selection_lab = ttk.Label(self.frame1, text = "Please Select Supports", background = '#006665', font=("Helvetica",9, 'bold'))
-        self.support_selection_lab.place(height = 30, width = 140, x=70, y=250)
+        self.support_selection_lab.place(height = 30, width = 140, x=70, y=300)
 
         #Simple Support
         self.simple_support_pic = Image.open('images/simple_support.png').resize((20,20), Image.ANTIALIAS)
         self.resized_simple_support_pic = ImageTk.PhotoImage(self.simple_support_pic)
         self.simple_support_button = tk.Button(self.frame1, image = self.resized_simple_support_pic, bg = 'black', command = self.create_simple_support)
-        self.simple_support_button.place(height = 30, width = 50, x=90, y=280)
+        self.simple_support_button.place(height = 30, width = 50, x=90, y=330)
 
         #Roller Support
         self.roller_support_pic = Image.open('images/roller_support.png').resize((20,20), Image.ANTIALIAS)
         self.resized_roller_support_pic = ImageTk.PhotoImage(self.roller_support_pic)
         self.roller_support_button = tk.Button(self.frame1, image = self.resized_roller_support_pic, bg = 'black', command = self.create_roller_support)
-        self.roller_support_button.place(height = 30, width = 50, x=140, y=280)
+        self.roller_support_button.place(height = 30, width = 50, x=140, y=330)
 
         #Beam Length
         self.beam_length_number = tk.StringVar()
         #Beam Length Label
         self.beam_length_label = tk.Label(self.win, width = 50, height = 50, text = "Beam Length : ", bg = '#006665',font=("Helvetica",9, 'bold'))
-        self.beam_length_label.place(height = 30, width = 142, x=20, y=50)
+        self.beam_length_label.place(height = 30, width = 142, x=15, y=50)
         #Enter length of beam
         self.beam_length = tk.Entry(self.win, text = self.beam_length_number)
         self.beam_length.place(x = 160, y = 55)
@@ -139,7 +115,7 @@ class Window:
         self.e = tk.StringVar()
         #Youngs Modulus Label
         self.e_label = tk.Label(self.win, width = 50, height = 50, text = "Youngs Modulus : ", bg = '#006665',font=("Helvetica",9, 'bold'))
-        self.e_label.place(height = 30, width = 142, x=20, y= 75)
+        self.e_label.place(height = 30, width = 142, x=15, y= 75)
         #Entery for Youngs modulus
         self.e_val = tk.Entry(self.win, text = self.e)
         self.e_val.place(x = 160, y = 80)
@@ -149,7 +125,7 @@ class Window:
 
         #Submit Button
         self.submit = tk.Button(self.win, text = "Submit", command = lambda listt = self.len_lab_list: self.master_submit(listt))
-        self.submit.place(height = 30, width = 140, x=80, y=350)
+        self.submit.place(height = 30, width = 140, x=80, y=400)
 
         #Create the beam picture
         self.beam_pic = Image.open('images/beam.png').resize((400, 50), Image.ANTIALIAS)
@@ -231,14 +207,6 @@ class Window:
         self.beam_l = tk.Label(self.frame2, text = str(lab_num) + "m", bg = '#006665')
         width_ = 20+len(lab_num)+15
         self.beam_l.place(width = width_, height = 20, x=410, y = 270)
-        # x = 0
-        # if len(self.support_list)>=1:
-        #     for i in self.support_list:
-        #         if (i.cget('text') == 'fixed'):
-        #             x+=1
-        # else:
-        #     x=0
-        # print('No.of fixed supports : ' + str(x))
         self.calc_reactions()
 
 
@@ -250,26 +218,27 @@ class Window:
             print("Done destroying")
     
     def del_all_loads(self):
+
         for i in self.arrow_list:
             i.destroy()
         self.arrow_list.clear()
         for j in self.input_list:
             j.destroy()
         self.input_list.clear()
-        print(self.arrow_list)
+
         for k in self.len_lab_list:
             k.destroy()
         self.len_lab_list.clear()
         
     
     def del_all_supports(self):
+
         for i in self.support_list:
             i.destroy()
         self.support_list.clear()
+
     
-        
-
-
+    
     #Move input along with arrows (up)
     def move_input_up(self, e,txt):
         
@@ -653,7 +622,6 @@ class Window:
         self.simple_support_lab = tk.Label(self.frame2, text = 'pinned', image = self.resized_beam_simple_support)
         self.simple_support_lab.place(height = 30, width = 30, x=random.randrange(300,400), y=random.randrange(40,100))
         self.arrow_len = self.len_lab(self.frame2)
-        # print(self.support_list[0].cget("Text"))
         self.simple_support_lab.bind('<B1-Motion>', lambda event , lab = self.arrow_len.arrow_rel_len_lab : self.support_master(event, lab))
         self.support_list.append(self.simple_support_lab)
         self.grand_support_list.append([self.simple_support_lab, self.arrow_len.arrow_rel_len_lab])
@@ -789,7 +757,7 @@ class Window:
 
     def add_dist_lab_up(self, e, lab):
         
-        self.lenn = round(self.get_arrow_length(e.widget), 2)
+        self.lenn = round(self.get_arrow_length(e.widget), 1)
         if self.lenn > (int(self.beam_length_number.get())+0.3):
             self.lenn = self.lenn+0.3
         lab.config(text = str(self.lenn+0.5))
@@ -801,7 +769,7 @@ class Window:
 
     def add_dist_lab_down(self, e, lab):
         
-        self.lenn = round(self.get_arrow_length(e.widget), 2)
+        self.lenn = round(self.get_arrow_length(e.widget), 1)
         if self.lenn > (int(self.beam_length_number.get())+0.3):
             self.lenn = self.lenn+0.3
         lab.config(text = str(self.lenn+0.5))
@@ -879,7 +847,7 @@ class Window:
                 print(self.grand_load_list)
                 if j == 0:
                     load_info_dict["load_type"] = self.grand_load_list[i][j].cget('text')
-                    
+
                 elif j == 1:
                     if(load_info_dict["load_type"] == "uniform_load_arrow"):
                         ok = self.grand_load_list[i][j].get(1.0, "end-1c")
@@ -903,7 +871,7 @@ class Window:
                 if l == 0:
                     supports_info_dict["support_type"] = self.grand_support_list[k][l].cget('text')
                 elif l == 1:
-                    supports_info_dict["support_length"]= (self.grand_support_list[k][l].cget('text'))
+                    supports_info_dict["support_length"]= self.grand_support_list[k][l].cget('text')
             supports_list.append(supports_info_dict)
         
         print('Loads  List : ', loads_list)
@@ -911,7 +879,7 @@ class Window:
         print('Dimensions Dict : ', self.dimensions_dict)
         print('Youngs_Modulus : ',self.e.get())
         print('Beam Length', self.beam_length_number.get())
-        cf.get_results(loads_list, supports_list, self.dimensions_dict, self.support_type_name, self.beam_length_number.get(), self.e.get())
+        get_image = cf.get_results(loads_list, supports_list, self.dimensions_dict, self.support_type_name, self.beam_length_number.get(), self.e.get())
                     
 
     #Entry class
