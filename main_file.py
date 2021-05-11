@@ -266,9 +266,12 @@ class Window:
         txt.place(x=x-10 , y = y+20)
     
     #Delete Support
-    def delete_support(self, e):
+    def delete_support(self, e, inp):
         if((str(self.bin_label.winfo_rootx())[0] + str(self.bin_label.winfo_rootx())[1]) == (str(e.widget.winfo_rootx())[0] + str(e.widget.winfo_rootx())[1])) and ((str(self.bin_label.winfo_rooty())[0] + str(self.bin_label.winfo_rooty())[1]) == (str(e.widget.winfo_rooty())[0] + str(e.widget.winfo_rooty())[1])):
             e.widget.destroy()
+            inp.destroy()
+            # this is where label delete needs to come too
+
             print("Done destroying")
 
     def trial(self):
@@ -295,7 +298,7 @@ class Window:
         self.add_dist_lab_down(e,lab)
     
     def support_master(self, e, lab):
-        self.delete_support(e)
+        self.delete_support(e, lab)
         self.move_support(e)
         self.add_dist_lab_down(e,lab)
 
@@ -767,7 +770,7 @@ class Window:
         self.lenn = round(self.get_arrow_length(e.widget), 1)
         if self.lenn > (int(self.beam_length_number.get())+0.3):
             self.lenn = self.lenn+0.3
-        lab.config(text = str(self.lenn + 0.2))
+        lab.config(text = str(self.lenn + 0.1))
         ex = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
         ey = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
         if self.lenn <= int(self.beam_length_number.get()):
@@ -779,7 +782,7 @@ class Window:
         self.lenn = round(self.get_arrow_length(e.widget), 1)
         if self.lenn > (int(self.beam_length_number.get())+0.3):
             self.lenn = self.lenn+0.3
-        lab.config(text = str(self.lenn + 0.2))
+        lab.config(text = str(self.lenn + 0.1))
         ex = e.widget.master.winfo_pointerx() - e.widget.master.winfo_rootx()
         ey = e.widget.master.winfo_pointery() - e.widget.master.winfo_rooty()
         if self.lenn <= int(self.beam_length_number.get()):
